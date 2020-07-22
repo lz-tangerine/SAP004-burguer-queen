@@ -1,14 +1,15 @@
 import React from 'react';
-import './App.css';
-import Background from './components/Background/Background';
-import Button from './components/Button/Button';
+import Background from './components/Background/Background.js';
+import Button from './components/Button/Button.js';
 // import firebase from './firebase';
 
-const App = () => (
-  <div className="App">
-    <Background />
-    <Button />
-  </div>
-);
+const App = () => {
+  return (
+    <div>
+      <Background />
+      <Button />
+    </div>
+  );
+};
 
 export default App;
