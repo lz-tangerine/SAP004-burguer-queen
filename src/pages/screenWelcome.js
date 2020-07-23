@@ -1,16 +1,23 @@
 import React from 'react';
 import Background from './components/Background/Background.js';
 import Button from './components/Button/Button.js';
+import Logo from './components/Logo/Logo.js';
 import './style.css';
+// import firebase from './firebase';
 
-const screenWelcome = () => {
+const App = () => {
   return (
-    <div>
+    <main>
       <Background />
-      <Button name="Login" className="login" />
-      <Button name="Registro" className="registro" />
-    </div>
+      <div>
+        <div>
+          <Logo />
+        </div>
+        <Button name="Login" className="login" />
+        <Button name="Registro" className="registro" />
+      </div>
+    </main>
   );
 };
 
-export default screenWelcome;
+export default App;

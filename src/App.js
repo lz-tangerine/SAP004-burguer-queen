@@ -13,8 +13,24 @@ const App = () => {
         <div>
           <Logo />
         </div>
-        <Button name="Login" className="login" />
-        <Button name="Registro" className="registro" />
+        <section>
+          <p className="welcome">Bem vindo CK Lover!</p>
+          <p className="login">
+            Entre com seu email e senha em Login ou
+            <br />
+            Registre um novo usuário!
+          </p>
+          <p className="trouble">
+            Problemas com seu login?
+            <br />
+            Clique aqui!
+          </p>
+        </section>
+
+        <div>
+          <Button name="Login" className="login" />
+          <Button name="Registro" className="registro" />
+        </div>
       </div>
     </main>
   );
