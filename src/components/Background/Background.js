@@ -1,9 +1,9 @@
 import React from 'react';
-import './style.css';
 import background from './background.jpg';
+import './style.css';
 
-const Background = (props) => {
-  return <img src={background} alt={'fundo imagem'}></img>;
-};
+const Background = () => (
+  <img id="screenBackground" src={background} alt={'fundo imagem'}></img>
+);
 
 export default Background;
