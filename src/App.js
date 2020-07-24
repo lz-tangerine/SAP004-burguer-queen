@@ -1,6 +1,5 @@
 import React from 'react';
 import Background from './components/Background/Background.js';
-import Button from './components/Button/Button.js';
 import Logo from './components/Logo/Logo.js';
 import './style.css';
 // import firebase from './firebase';
@@ -8,10 +7,10 @@ import './style.css';
 const App = () => {
   return (
     <main>
-      <Background />
+      <Background idPrimary="button" classNamePrimary="login" name="Login" />
       <div>
         <div>
-          <Logo />
+          <Logo className="medium" />
         </div>
         <section>
           <p className="welcome">Bem vindo CK Lover!</p>
@@ -20,17 +19,7 @@ const App = () => {
             <br />
             Registre um novo usuário!
           </p>
-          <p className="trouble">
-            Problemas com seu login?
-            <br />
-            Clique aqui!
-          </p>
         </section>
-
-        <div>
-          <Button name="Login" className="login" />
-          <Button name="Registro" className="registro" />
-        </div>
       </div>
     </main>
   );
