@@ -7,7 +7,14 @@ import './style.css';
 const App = () => {
   return (
     <main>
-      <Background idPrimary="button" classNamePrimary="login" name="Login" />
+      <Background
+        idPrimary="button"
+        classNamePrimary="login"
+        namePrimary="Login"
+        idSecond="button"
+        classNameSecond="registro"
+        nameSecond="Registro"
+      />
       <div>
         <div>
           <Logo className="medium" />
