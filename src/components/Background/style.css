@@ -41,3 +41,13 @@
   left: 493px;
   top: 863px;
 }
+
+.trouble {
+  position: absolute;
+  font-size: 36px;
+  line-height: 42px;
+  width: 691px;
+  height: 96px;
+  left: 108px;
+  top: 1054px;
+}

@@ -21,10 +21,8 @@ const App = () => {
         </div>
         <section>
           <p className="welcome">Bem vindo CK Lover!</p>
-          <p className="login">
-            Entre com seu email e senha em Login ou
-            <br />
-            Registre um novo usuário!
+          <p className="message">
+            Entre com seu email e senha em Login ou Registre um novo usuário!
           </p>
         </section>
       </div>
