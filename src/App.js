@@ -15,21 +15,22 @@ const App = () => {
         nameSecond="Registro"
       />
       <form>
+        <label className="user">Email</label>
         <input
           id="email"
           type="email"
           className="email"
           placeholder="digite seu email"
         />
-        Email
+
+        <label className="senha">Senha</label>
         <input
           id="password"
           type="password"
           minlength="6"
-          className="senha"
+          className="password"
           placeholder="minimo de 6 digitos"
         />
-        Senha
       </form>
     </main>
   );

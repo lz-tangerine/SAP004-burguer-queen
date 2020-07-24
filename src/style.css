@@ -42,10 +42,42 @@ input {
   left: 167px;
   top: 268px;
 }
-.senha {
+.password {
   position: absolute;
   width: 578px;
   height: 111px;
   left: 167px;
   top: 513px;
+}
+
+.senha {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #faf6f6;
+  position: absolute;
+  width: 123px;
+  height: 47px;
+  left: 167px;
+  top: 466px;
+}
+
+.user {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #faf6f6;
+  position: absolute;
+  width: 123px;
+  height: 47px;
+  left: 167px;
+  top: 221px;
 }
