@@ -3,7 +3,7 @@ import background from './background.jpg';
 import './style.css';
 
 const Background = (props) => (
-  <main>
+  <div>
     <img id="background" src={background} alt={'fundo imagem'}></img>
     <div>
       <button
@@ -32,7 +32,7 @@ const Background = (props) => (
         Clique aqui!
       </p>
     </div>
-  </main>
+  </div>
 );
 
 export default Background;
