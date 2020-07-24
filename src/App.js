@@ -8,14 +8,14 @@ const App = () => {
     <main>
       <Background
         idPrimary="button"
-        classNamePrimary="login"
-        namePrimary="Login"
+        classNamePrimary="back"
+        namePrimary="Voltar"
         idSecond="button"
-        classNameSecond="registro"
-        nameSecond="Registro"
+        classNameSecond="enter"
+        nameSecond="Entrar"
       />
       <form>
-        <label className="user">Email</label>
+        <label className="label-user">Email</label>
         <input
           id="email"
           type="email"
@@ -23,7 +23,7 @@ const App = () => {
           placeholder="digite seu email"
         />
 
-        <label className="senha">Senha</label>
+        <label className="label-senha">Senha</label>
         <input
           id="password"
           type="password"
@@ -32,6 +32,7 @@ const App = () => {
           placeholder="minimo de 6 digitos"
         />
       </form>
+      <p className="forgot">Esqueceu a senha?</p>
     </main>
   );
 };
