@@ -1,6 +1,6 @@
-import React from 'react';
-import background from './background.jpg';
-import './style.css';
+import React from 'react'
+import background from './background.jpg'
+import './style.css'
 
 const Background = (props) => (
   <div>
@@ -33,6 +33,6 @@ const Background = (props) => (
       </p>
     </div>
   </div>
-);
+)
 
-export default Background;
+export default Background

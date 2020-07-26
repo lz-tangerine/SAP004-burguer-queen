@@ -1,6 +1,6 @@
-import React from 'react';
-import Background from './components/Background/Background.js';
-import './style.css';
+import React from 'react'
+import Background from './components/Background/Background.js'
+import './style.css'
 // import firebase from './firebase';
 
 const Index = () => {
@@ -34,7 +34,7 @@ const Index = () => {
       </form>
       <p className="forgot">Esqueceu a senha?</p>
     </main>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index
