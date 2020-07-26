@@ -1,6 +1,6 @@
-import React from 'react';
-import Background from './components/Background/Background.js';
-import './style.css';
+import React from 'react'
+import Background from './components/Background/Background.js'
+import './style.css'
 // import firebase from './firebase';
 
 const App = () => {
@@ -34,7 +34,7 @@ const App = () => {
       </form>
       <p className="forgot">Esqueceu a senha?</p>
     </main>
-  );
-};
+  )
+}
 
-export default App;
+export default App
