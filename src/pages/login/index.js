@@ -15,7 +15,7 @@ const Index = () => {
         nameSecond="Entrar"
       />
       <form>
-        <label className="label-user">Email</label>
+        <label className="label-email">Email</label>
         <input
           id="email"
           type="email"
