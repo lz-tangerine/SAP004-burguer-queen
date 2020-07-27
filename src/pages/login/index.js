@@ -15,7 +15,7 @@ const Index = () => {
         nameSecond="Entrar"
       />
       <form>
-        <label className="label-email">Email</label>
+        <label className="label label-email">Email</label>
         <input
           id="email"
           type="email"
@@ -23,7 +23,7 @@ const Index = () => {
           placeholder="digite seu email"
         />
 
-        <label className="label-senha">Senha</label>
+        <label className="label label-senha">Senha</label>
         <input
           id="password"
           type="password"

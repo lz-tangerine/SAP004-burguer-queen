@@ -11,23 +11,19 @@ input {
   display: flex;
   align-items: center;
   color: #000000;
-}
-.email {
   position: absolute;
   width: 578px;
   height: 111px;
   left: 167px;
+}
+.email {
   top: 268px;
 }
 .password {
-  position: absolute;
-  width: 578px;
-  height: 111px;
-  left: 167px;
   top: 513px;
 }
 
-.label-senha {
+.label {
   font-style: normal;
   font-weight: bold;
   font-size: 36px;
@@ -37,38 +33,32 @@ input {
   text-align: center;
   color: #faf6f6;
   position: absolute;
+}
+
+.label-senha {
   left: 180px;
   top: 466px;
 }
 
 .label-email {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 36px;
-  line-height: 42px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #faf6f6;
-  position: absolute;
   left: 180px;
   top: 221px;
 }
 
-.back {
+#button {
   position: absolute;
   width: 357px;
   height: 130px;
+}
+
+.back {
   left: 62px;
   top: 864px;
 }
 
 .enter {
-  position: absolute;
   background-color: #1ffe5d;
   border: #1ffe5d;
-  width: 357px;
-  height: 130px;
   left: 493px;
   top: 863px;
 }

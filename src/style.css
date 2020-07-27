@@ -20,69 +20,32 @@ p {
   justify-content: center;
   color: #1ffe5d;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  position: absolute;
 }
 
-input {
-  padding-left: 30px;
-  background: rgba(232, 232, 232, 0.98);
-  border: 4px solid #faf6f6;
-  box-sizing: border-box;
-  border-radius: 20px;
-  font-style: normal;
-  font-weight: bold;
+.welcome {
+  font-size: 42px;
+  line-height: 49px;
+  height: 61px;
+  left: 252px;
+  top: 633px;
+}
+
+.message {
   font-size: 36px;
   line-height: 42px;
-  display: flex;
-  align-items: center;
-  color: #000000;
-  position: absolute;
-  width: 578px;
-  height: 111px;
-  left: 167px;
-}
-.name {
-  top: 165px;
-}
-.user {
-  top: 350px;
+  width: 691px;
+  height: 98px;
+  left: 108px;
+  top: 705px;
 }
 
-.email {
-  top: 535px;
-}
-.password {
-  top: 720px;
-}
-.label {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 36px;
-  line-height: 42px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #faf6f6;
-  position: absolute;
-  position: absolute;
-  width: 123px;
-  height: 47px;
-  left: 167px;
-}
-.label-name {
-  top: 118px;
-}
-
-.label-user {
-  width: 293px;
-  top: 303px;
-}
-
-.label-email {
-  top: 488px;
-}
-
-.label-senha {
-  top: 673px;
+.logotipo {
+  position: absolute !important;
+  width: 303px;
+  height: 400px;
+  left: 302px;
+  top: 173px;
 }
 
 #button {
@@ -91,57 +54,12 @@ input {
   height: 130px;
 }
 
-.back {
+.login {
   left: 62px;
-  top: 987px;
+  top: 864px;
 }
 
-.enter {
-  background-color: #1ffe5d;
-  border: #1ffe5d;
+.registro {
   left: 493px;
-  top: 986px;
-}
-
-.choice {
-  position: absolute;
-  width: 93px;
-  height: 66px;
-  left: 410px;
-  top: 852px;
-}
-
-.label-cozinha {
-  width: 134px;
-  height: 43px;
-  left: 320px;
-  top: 922px;
-}
-
-.kitchen {
-  width: 22px;
-  height: 22px;
-  left: 282px;
-  top: 932px;
-}
-
-.label-salao {
-  width: 99px;
-  height: 43px;
-  left: 532px;
-  top: 922px;
-}
-
-.saloon {
-  width: 22px;
-  height: 22px;
-  left: 494px;
-  top: 932px;
-}
-
-.trouble {
-  width: 691px;
-  height: 96px;
-  left: 111px;
-  top: 1154px;
+  top: 863px;
 }
