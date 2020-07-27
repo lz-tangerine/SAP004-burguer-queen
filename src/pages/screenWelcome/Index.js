@@ -1,7 +1,7 @@
-import React from 'react';
-import Background from './components/Background/Background.js';
-import logo from './imagens/logo.png';
-import './style.css';
+import React from 'react'
+import Background from './components/Background/Background.js'
+import logo from './imagens/logo.png'
+import './style.css'
 // import firebase from './firebase';
 
 const Index = () => {
@@ -25,7 +25,7 @@ const Index = () => {
         </p>
       </section>
     </main>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index
