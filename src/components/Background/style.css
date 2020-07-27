@@ -26,22 +26,6 @@
   color: #000000;
 }
 
-.login {
-  position: absolute;
-  width: 357px;
-  height: 130px;
-  left: 62px;
-  top: 864px;
-}
-
-.registro {
-  position: absolute;
-  width: 357px;
-  height: 130px;
-  left: 493px;
-  top: 863px;
-}
-
 .trouble {
   position: absolute;
   font-size: 36px;

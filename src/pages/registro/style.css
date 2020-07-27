@@ -16,13 +16,19 @@ input {
   height: 111px;
   left: 167px;
 }
-.email {
-  top: 268px;
+.name {
+  top: 165px;
 }
-.password {
-  top: 513px;
+.user {
+  top: 350px;
 }
 
+.email {
+  top: 535px;
+}
+.password {
+  top: 720px;
+}
 .label {
   font-style: normal;
   font-weight: bold;
@@ -33,16 +39,26 @@ input {
   text-align: center;
   color: #faf6f6;
   position: absolute;
+  position: absolute;
+  width: 123px;
+  height: 47px;
+  left: 167px;
+}
+.label-name {
+  top: 118px;
 }
 
-.label-senha {
-  left: 180px;
-  top: 466px;
+.label-user {
+  width: 293px;
+  top: 303px;
 }
 
 .label-email {
-  left: 180px;
-  top: 221px;
+  top: 488px;
+}
+
+.label-senha {
+  top: 673px;
 }
 
 #button {
@@ -53,22 +69,55 @@ input {
 
 .back {
   left: 62px;
-  top: 864px;
+  top: 987px;
 }
 
 .enter {
   background-color: #1ffe5d;
   border: #1ffe5d;
   left: 493px;
-  top: 863px;
+  top: 986px;
 }
 
-.forgot {
+.choice {
   position: absolute;
-  font-size: 36px;
-  line-height: 42px;
-  width: 323px;
+  width: 93px;
   height: 66px;
-  left: 311px;
-  top: 699px;
+  left: 410px;
+  top: 852px;
+}
+
+.label-cozinha {
+  width: 134px;
+  height: 43px;
+  left: 320px;
+  top: 922px;
+}
+
+.kitchen {
+  width: 22px;
+  height: 22px;
+  left: 282px;
+  top: 932px;
+}
+
+.label-salao {
+  width: 99px;
+  height: 43px;
+  left: 532px;
+  top: 922px;
+}
+
+.saloon {
+  width: 22px;
+  height: 22px;
+  left: 494px;
+  top: 932px;
+}
+
+.trouble {
+  width: 691px;
+  height: 96px;
+  left: 111px;
+  top: 1154px;
 }
