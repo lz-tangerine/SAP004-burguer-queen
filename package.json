@@ -2,12 +2,15 @@
   "name": "burguer-queen",
   "version": "0.1.0",
   "private": true,
+  "key": "e6e97b92c5c49cb263c168abecad6916b605d2ae",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "firebase": "^7.16.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1"
   },
   "scripts": {
