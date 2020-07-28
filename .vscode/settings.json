@@ -10,11 +10,7 @@
     ".stylelintrc": "json",
     ".prettierrc": "json"
   },
-<<<<<<< HEAD
   "window.zoomLevel": 0,
-=======
-  "window.zoomLevel": -1,
->>>>>>> 16b74a48006351d4c4c791875b450db467a1d69e
   "emmet.syntaxProfiles": {
     "javascript": "jsx"
   },
@@ -25,11 +21,7 @@
   "javascript.suggest.autoImports": true,
   "typescript.suggest.autoImports": true,
   "screencastMode.onlyKeyboardShortcuts": true,
-<<<<<<< HEAD
   "editor.tabSize": 2,
   "editor.suggest.shareSuggestSelections": true,
   "git.ignoreLimitWarning": true
-=======
-  "editor.tabSize": 2
->>>>>>> 16b74a48006351d4c4c791875b450db467a1d69e
 }
