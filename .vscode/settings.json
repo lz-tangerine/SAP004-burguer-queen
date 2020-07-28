@@ -21,5 +21,6 @@
   "typescript.suggest.autoImports": true,
   "screencastMode.onlyKeyboardShortcuts": true,
   "editor.tabSize": 2,
-  "editor.suggest.shareSuggestSelections": true
+  "editor.suggest.shareSuggestSelections": true,
+  "git.ignoreLimitWarning": true
 }
