@@ -1,5 +1,5 @@
 import React from 'react'
-import Background from './components/Background/Background.js'
+import Background from '../../components/Background/Background.js'
 import './style.css'
 // import firebase from './firebase';
 
