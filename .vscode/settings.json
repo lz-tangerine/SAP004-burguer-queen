@@ -10,7 +10,6 @@
     ".stylelintrc": "json",
     ".prettierrc": "json"
   },
-  "window.zoomLevel": -1,
   "emmet.syntaxProfiles": {
     "javascript": "jsx"
   },
@@ -21,5 +20,7 @@
   "javascript.suggest.autoImports": true,
   "typescript.suggest.autoImports": true,
   "screencastMode.onlyKeyboardShortcuts": true,
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "editor.suggest.shareSuggestSelections": true,
+  "git.ignoreLimitWarning": true
 }
