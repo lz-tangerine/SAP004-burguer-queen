@@ -4,7 +4,7 @@ import './style.css'
 
 const Background = (props) => (
   <div>
-    <img id="background" src={background} alt={'fundo imagem'}></img>
+    <img id="background" src={background} alt="fundo imagem"></img>
     <div>
       <button
         id={props.idPrimary}
