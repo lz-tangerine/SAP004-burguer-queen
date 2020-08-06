@@ -19,15 +19,15 @@ export default class Main extends Component {
     return (
       <main>
         <div className="logo">
-          <img src={logo}></img>
+          <img alt="" src={logo}></img>
         </div>
         <p>Bem vindo CK Lover!</p>
-        <p>Entre com seu email e senha em Login ou Registre um novo usuário!</p>
+        <p>Entre com seu email e senha em Login<br /> ou <br />Registre um novo usuário!</p>
         <div>
-          <Link className="buttons" to="/login">
+          <Link className="buttons bg-primary" to="/login">
             Login
           </Link>
-          <Link className="buttons" to="/register">
+          <Link className="buttons bg-primary" to="/register">
             Registre-se
           </Link>
         </div>
