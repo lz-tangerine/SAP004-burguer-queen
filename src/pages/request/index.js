@@ -1,17 +1,19 @@
-import React, { Component } from 'react'
+import React from 'react'
 import logo from '../../imagens/logo.png'
 import './style.css'
 
-export default class Index extends Component {
-
-  render() {
-    return (
-      <main>
-        <div className="logo">
-          <img src={logo} alt=""></img>
-        </div>
-        <p>Request!</p>
-      </main>
-    )
-  }
+const Request = () => {
+  return (
+    <main>
+      <div className="logo">
+        <img src={logo} alt="logo"></img>
+      </div>
+      <nav>
+        <button className="request" src="PEDIDOS"></button>
+        <button className="preparation" src="PREPARAÇÃO"></button>
+      </nav>
+    </main>
+  )
 }
+
+export default Request

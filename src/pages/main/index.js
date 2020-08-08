@@ -22,7 +22,11 @@ export default class Main extends Component {
           <img alt="" src={logo}></img>
         </div>
         <p>Bem vindo CK Lover!</p>
-        <p>Entre com seu email e senha em Login<br /> ou <br />Registre um novo usuário!</p>
+        <p>
+          Entre com seu email e senha em Login
+          <br /> ou <br />
+          Registre um novo usuário!
+        </p>
         <div>
           <Link className="buttons bg-primary" to="/login">
             Login
