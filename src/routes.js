@@ -3,19 +3,24 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Main from './pages/main'
 import Login from './pages/login'
 import Register from './pages/register'
-import firebase from './firebase'
+import Kitchen from './pages/kitchen'
+import Request from './pages/request'
 
 
-function SecureRoute(props) {
-  console.log(firebase.auth().currentUser)
-  return (
-    <Route path={props.path} render={data => firebase.auth().currentUser ? (
-      <props.component {...data}></props.component>
-    ) : (
-        <Redirect to={{ pathname: '/' }}></Redirect>
-      )}></Route>
-  )
-}
+import { isAuthenticated } from "./services/auth";
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      isAuthenticated() ? (
+        <Component {...props} />
+      ) : (
+          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+        )
+    }
+  />
+);
 
 const Routes = () => {
   return (
@@ -24,7 +29,8 @@ const Routes = () => {
         <Route exact path="/" component={Main} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <SecureRoute path="/menu" component={Register} />
+        <PrivateRoute exact path="/kitchen" component={Kitchen} />
+        <PrivateRoute exact path="/request" component={Request} />
         <Route componete={() => (<div>Página 404</div>)} />
       </Switch>
     </BrowserRouter>
