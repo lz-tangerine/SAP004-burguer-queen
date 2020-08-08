@@ -9,7 +9,7 @@ const Request = () => {
         <img src={logo} alt="logo"></img>
       </div>
       <nav>
-        <button className="requist" src="PEDIDOS"></button>
+        <button className="request" src="PEDIDOS"></button>
         <button className="preparation" src="PREPARAÇÃO"></button>
       </nav>
     </main>
