@@ -4,60 +4,87 @@ import logo from '../../imagens/logo.png'
 import './style.css'
 import firebase from '../../firebase'
 
-const Index = () => {
-  const submit = (e) => {
-    e.preventDefault()
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(e.target.email.value, e.target.password.value)
-      .then(() => {
-        alert('logou no firebase...')
-        console.log('OK, logou')
-      }).catch((error) => {
+import { login } from "../../services/auth";
+import { Component } from 'react'
 
-        alert('Login ou senha invalido...')
-        console.log(error)
-      });
+
+export default class Index extends Component {
+  state = {
+    email: '',
+    password: '',
+    error: ''
   }
 
-  return (
-    <main>
+  submitLogin = (e) => {
+    e.preventDefault()
+    const { email, password } = this.state;
 
-      <div className="logo">
-        <img alt="" src={logo}></img>
-      </div>
-      <form name="formLogin" onSubmit={submit}>
-        <label className="label label-email">Email</label>
-        <input
-          name="email"
-          type="email"
-          className="email"
-          required="required"
-          placeholder="digite seu email"
-        />
+    if (!email || !password) {
+      this.setState({ error: "Preencha e-mail e senha para continuar!" });
+    } else {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(async (result) => {
 
-        <label className="label label-senha">Senha</label>
-        <input
-          name="password"
-          type="password"
-          minLength="6"
-          required="required"
-          className="password"
-          placeholder="minimo de 6 digitos"
-        />
-        <div className="dvBtLogin">
-          <Link className="buttons bg-primary" to="/">
-            Voltar
-          </Link>
-          <button type="submit" className="buttons bg-action">
-            Entrar
-          </button>
+          const resultToken = await result.user.getIdTokenResult()
+
+          login(resultToken.token)
+
+          this.props.history.push("/menu");
+
+        }).catch((error) => {
+          this.setState({ error: "E-mail e senha inválidos!" });
+        });
+    }
+  }
+
+  render() {
+    return (
+      <main>
+
+        <div className="logo">
+          <img alt="" src={logo}></img>
+
+          {this.state.error && <p>{this.state.error}</p>}
+
         </div>
-      </form>
-      <p className="forgot">Esqueceu a senha?</p>
-    </main>
-  )
+        <form name="formLogin" onSubmit={this.submitLogin}>
+          <label className="label label-email">Email</label>
+          <input
+            name="email"
+            type="email"
+            className="email"
+            required="required"
+            placeholder="digite seu email"
+            onChange={e => this.setState({ email: e.target.value })}
+          />
+
+          <label className="label label-senha">Senha</label>
+          <input
+            name="password"
+            type="password"
+            minLength="6"
+            required="required"
+            className="password"
+            placeholder="minimo de 6 digitos"
+            onChange={e => this.setState({ password: e.target.value })}
+          />
+
+          <div className="dvBtLogin">
+            <Link className="buttons bg-primary" to="/">
+              Voltar
+          </Link>
+            <button type="submit" className="buttons bg-action">
+              Entrar
+          </button>
+
+          </div>
+        </form>
+        <p className="forgot">Esqueceu a senha?</p>
+      </main >
+    )
+  }
 }
 
-export default Index
 

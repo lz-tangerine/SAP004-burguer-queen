@@ -30,6 +30,10 @@ export default class Main extends Component {
           <Link className="buttons bg-primary" to="/register">
             Registre-se
           </Link>
+
+          <Link className="buttons bg-primary" to="/menu">
+            Menu
+          </Link>
         </div>
         <p className="trouble">
           Problemas com seu login?
