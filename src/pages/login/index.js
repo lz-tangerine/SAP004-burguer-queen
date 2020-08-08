@@ -45,9 +45,6 @@ export default class Index extends Component {
 
         <div className="logo">
           <img alt="" src={logo}></img>
-
-          {this.state.error && <p>{this.state.error}</p>}
-
         </div>
         <form name="formLogin" onSubmit={this.submitLogin}>
           <label className="label label-email">Email</label>
@@ -70,6 +67,9 @@ export default class Index extends Component {
             placeholder="minimo de 6 digitos"
             onChange={e => this.setState({ password: e.target.value })}
           />
+
+
+          {this.state.error && <p>{this.state.error}</p>}
 
           <div className="dvBtLogin">
             <Link className="buttons bg-primary" to="/">
