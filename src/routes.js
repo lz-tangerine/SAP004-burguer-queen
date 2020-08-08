@@ -3,6 +3,8 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Main from './pages/main'
 import Login from './pages/login'
 import Register from './pages/register'
+import Kitchen from './pages/kitchen'
+import Request from './pages/request'
 
 
 import { isAuthenticated } from "./services/auth";
@@ -27,7 +29,8 @@ const Routes = () => {
         <Route exact path="/" component={Main} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <PrivateRoute path="/menu" component={Register} />
+        <PrivateRoute exact path="/kitchen" component={Kitchen} />
+        <PrivateRoute exact path="/request" component={Request} />
         <Route componete={() => (<div>Página 404</div>)} />
       </Switch>
     </BrowserRouter>
