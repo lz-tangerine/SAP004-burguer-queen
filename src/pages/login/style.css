@@ -1,74 +1,13 @@
-input {
-  padding-left: 30px;
-  background: rgba(232, 232, 232, 0.98);
-  border: 4px solid #faf6f6;
-  box-sizing: border-box;
-  border-radius: 20px;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 36px;
-  line-height: 42px;
+main .logo {
   display: flex;
-  align-items: center;
-  color: #000000;
-  position: absolute;
-  width: 578px;
-  height: 111px;
-  left: 167px;
-}
-.email {
-  top: 268px;
-}
-.password {
-  top: 513px;
+  justify-content: center;
 }
 
-.label {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 36px;
-  line-height: 42px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #faf6f6;
-  position: absolute;
+main .logo img {
+  width: 150px;
+  margin-bottom: 10px;
 }
 
-.label-senha {
-  left: 180px;
-  top: 466px;
-}
-
-.label-email {
-  left: 180px;
-  top: 221px;
-}
-
-#button {
-  position: absolute;
-  width: 357px;
-  height: 130px;
-}
-
-.back {
-  left: 62px;
-  top: 864px;
-}
-
-.enter {
-  background-color: #1ffe5d;
-  border: #1ffe5d;
-  left: 493px;
-  top: 863px;
-}
-
-.forgot {
-  position: absolute;
-  font-size: 36px;
-  line-height: 42px;
-  width: 323px;
-  height: 66px;
-  left: 311px;
-  top: 699px;
+main .dvBtLogin {
+  margin-top: 30px;
 }
