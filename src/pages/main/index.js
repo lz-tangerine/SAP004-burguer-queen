@@ -19,7 +19,7 @@ export default class Main extends Component {
     return (
       <main>
         <div className="logo">
-          <img src={logo}></img>
+          <img src={logo} alt="logo"></img>
         </div>
         <p>Bem vindo CK Lover!</p>
         <p>Entre com seu email e senha em Login ou Registre um novo usuário!</p>
