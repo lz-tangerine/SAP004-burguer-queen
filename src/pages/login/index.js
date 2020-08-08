@@ -29,9 +29,34 @@ export default class Index extends Component {
 
           const resultToken = await result.user.getIdTokenResult()
 
-          login(resultToken.token)
+          firebase.firestore().collection('users')
+            .where('user_uid', '==', result.user.uid).get()
+            .then(docs => {
+              login(resultToken.token, docs)
+            })
 
-          this.props.history.push("/menu");
+          // firebase.firestore().collection('users')
+          //   .where('user_uid', '==', data.user.uid).get()
+          //   .then(docs => {
+          //     if (docs.size == 0 && data.user.uid) {
+          //       const user = {
+          //         name: data.user.displayName,
+          //         surname: "",
+          //         status: "",
+          //         date: "",
+          //         photo: data.user.photoURL,
+          //         user_uid: data.user.uid,
+          //       };
+          //       firebase.firestore().collection('users').add(user)
+          //         .catch((error) => {
+          //           reject(error);
+          //         }).finally((data) => {
+          //           resolve(data);
+          //         });
+          //     } else {
+          //       resolve(docs.size);
+          //     }
+
 
         }).catch((error) => {
           this.setState({ error: "E-mail e senha inválidos!" });
