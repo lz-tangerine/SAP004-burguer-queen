@@ -1,0 +1,113 @@
+.logo {
+  position: absolute;
+  width: 115px;
+  height: 143px;
+  left: 399px;
+  top: 26px;
+}
+
+.nav {
+  height: 80px;
+  top: 212px;
+  background: #000000;
+  border-radius: 15px;
+  font-size: 42px;
+  font-weight: bold;
+  color: #1ffe5d;
+  position: absolute;
+  border: 1px solid #000000;
+}
+
+.request {
+  left: 147px;
+  width: 305px;
+}
+
+.preparation {
+  left: 464px;
+  width: 350px;
+}
+
+.breakfast {
+  position: absolute;
+  left: 133px;
+  top: 327px;
+}
+
+.americanCoffee {
+  left: 53px;
+  top: 387px;
+}
+
+.milkCoffee {
+  left: 261px;
+  top: 387px;
+}
+
+.sandwich {
+  left: 53px;
+  top: 504px;
+}
+
+.juice {
+  left: 261px;
+  top: 504px;
+}
+
+.hamburguer {
+  position: absolute;
+  left: 155px;
+  top: 641px;
+}
+
+.simpleHamburguer {
+  left: 53px;
+  top: 692px;
+}
+
+.doubleHamburguer {
+  left: 261px;
+  top: 692px;
+}
+
+.sideDish {
+  position: absolute;
+  left: 91px;
+  top: 829px;
+}
+
+.fries {
+  left: 53px;
+  top: 880px;
+}
+
+.onionRing {
+  left: 261px;
+  top: 880px;
+}
+
+.drinks {
+  position: absolute;
+  left: 189px;
+  top: 1017px;
+}
+
+.water500 {
+  left: 53px;
+  top: 1077px;
+}
+
+.water750 {
+  left: 261px;
+  top: 1077px;
+}
+
+.soda500 {
+  left: 53px;
+  top: 1194px;
+}
+
+.soda750 {
+  left: 261px;
+  top: 1194px;
+}
