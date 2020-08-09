@@ -33,11 +33,13 @@
   left: 133px;
   top: 327px;
 }
+
 .americanCoffee {
   left: 53px;
   top: 387px;
 }
-.expressCoffee {
+
+.milkCoffee {
   left: 261px;
   top: 387px;
 }
@@ -46,7 +48,66 @@
   left: 53px;
   top: 504px;
 }
+
 .juice {
   left: 261px;
   top: 504px;
+}
+
+.hamburguer {
+  position: absolute;
+  left: 155px;
+  top: 641px;
+}
+
+.simpleHamburguer {
+  left: 53px;
+  top: 692px;
+}
+
+.doubleHamburguer {
+  left: 261px;
+  top: 692px;
+}
+
+.sideDish {
+  position: absolute;
+  left: 91px;
+  top: 829px;
+}
+
+.fries {
+  left: 53px;
+  top: 880px;
+}
+
+.onionRing {
+  left: 261px;
+  top: 880px;
+}
+
+.drinks {
+  position: absolute;
+  left: 189px;
+  top: 1017px;
+}
+
+.water500 {
+  left: 53px;
+  top: 1077px;
+}
+
+.water750 {
+  left: 261px;
+  top: 1077px;
+}
+
+.soda500 {
+  left: 53px;
+  top: 1194px;
+}
+
+.soda750 {
+  left: 261px;
+  top: 1194px;
 }
