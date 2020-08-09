@@ -6,21 +6,20 @@ import Register from './pages/register'
 import Kitchen from './pages/kitchen'
 import Request from './pages/request'
 
-
-import { isAuthenticated } from "./services/auth";
+import { isAuthenticated } from './services/auth'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
+    render={(props) =>
       isAuthenticated() ? (
         <Component {...props} />
       ) : (
-          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-        )
+        <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+      )
     }
   />
-);
+)
 
 const Routes = () => {
   return (
@@ -31,7 +30,7 @@ const Routes = () => {
         <Route path="/register" component={Register} />
         <PrivateRoute exact path="/kitchen" component={Kitchen} />
         <PrivateRoute exact path="/request" component={Request} />
-        <Route componete={() => (<div>Página 404</div>)} />
+        <Route componete={() => <div>Página 404</div>} />
       </Switch>
     </BrowserRouter>
   )

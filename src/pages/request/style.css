@@ -5,3 +5,24 @@
   left: 399px;
   top: 26px;
 }
+
+.nav {
+  height: 80px;
+  top: 212px;
+  background: #000000;
+  border-radius: 15px;
+  font-size: 42px;
+  font-weight: bold;
+  color: #1ffe5d;
+  position: absolute;
+}
+
+.request {
+  left: 147px;
+  width: 305px;
+}
+
+.preparation {
+  left: 464px;
+  width: 350px;
+}

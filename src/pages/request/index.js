@@ -5,12 +5,12 @@ import './style.css'
 const Request = () => {
   return (
     <main>
-      <div className="logo">
-        <img src={logo} alt="logo"></img>
+      <div>
+        <img src={logo} alt="logo" className="logo"></img>
       </div>
       <nav>
-        <button className="request" src="PEDIDOS"></button>
-        <button className="preparation" src="PREPARAÇÃO"></button>
+        <button className="nav request"> PEDIDOS </button>
+        <button className="nav preparation"> PREPARAÇÃO </button>
       </nav>
     </main>
   )
