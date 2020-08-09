@@ -2,7 +2,7 @@ import React from 'react'
 import './style.css'
 import Button from '../Button/Button.js'
 
-const fourButton = (props) => (
+const FourButton = (props) => (
   <div>
     <p className={props.className}>{props.p}</p>
     <div>
@@ -30,4 +30,4 @@ const fourButton = (props) => (
   </div>
 )
 
-export default fourButton
+export default FourButton

@@ -17,25 +17,3 @@ p {
   align-items: center;
   color: #e3e3e3;
 }
-.breakfast {
-  position: absolute;
-  left: 133px;
-  top: 327px;
-}
-.americanCoffee {
-  left: 53px;
-  top: 387px;
-}
-.expressCoffee {
-  left: 261px;
-  top: 387px;
-}
-
-.sandwich {
-  left: 53px;
-  top: 504px;
-}
-.juice {
-  left: 261px;
-  top: 504px;
-}

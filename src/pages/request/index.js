@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from '../../imagens/logo.png'
 import './style.css'
-import Breakfast from '../../components/Breakfast/Breakfast'
+import FourButton from '../../components/FourButton/FourButton'
 
 const Request = () => {
   return (
@@ -14,13 +14,17 @@ const Request = () => {
         <button className="nav preparation"> PREPARAÇÃO </button>
       </nav>
       <div>
-        <Breakfast
+        <FourButton
           className="breakfast"
           p="Café da manhã"
           classNamePrimary="americanCoffee"
           namePrimary="Café Americano"
           classNameSecond="expressCoffee"
           nameSecond="Café com leite"
+          classNameThird="sandwich"
+          nameThird="Misto quente"
+          classNameFourth="juice"
+          nameFourth="Suco de fruta"
         />
       </div>
     </main>
