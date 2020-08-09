@@ -14,25 +14,18 @@ body {
 }
 
 #root {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100vw;
   min-height: 100vh;
 }
 
 #container {
-  display: flex;
   background-image: url(./imagens/background.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-repeat: no-repeat;
-  justify-content: center;
-  position: absolute;
   width: 912px;
   height: 1368px;
-  left: 1px;
-  top: 0px;
+  margin: 0 auto;
 }
 
 .buttons {
@@ -67,7 +60,7 @@ body {
   background: #77edc9;
 }
 
-input {
+.input {
   background: rgba(232, 232, 232, 0.98);
   border-radius: 20px;
   font-size: 22px;
@@ -81,7 +74,6 @@ input {
   font-weight: bold;
   font-size: 36px;
   line-height: 42px;
-  display: flex;
   align-items: center;
   text-align: center;
   color: #faf6f6;
