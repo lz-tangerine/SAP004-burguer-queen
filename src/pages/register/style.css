@@ -1,123 +1,96 @@
-input {
-  padding-left: 30px;
-  background: rgba(232, 232, 232, 0.98);
-  border: 4px solid #faf6f6;
-  box-sizing: border-box;
-  border-radius: 20px;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 36px;
-  line-height: 42px;
-  display: flex;
-  align-items: center;
-  color: #000000;
-  position: absolute;
-  width: 578px;
-  height: 111px;
-  left: 167px;
-}
-.name {
-  top: 165px;
-}
-.user {
-  top: 350px;
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(12, 1fr);
+  max-width: 100%;
+  max-height: 100%;
+  grid-gap: 20px;
 }
 
-.email {
-  top: 535px;
+main div.header img {
+  width: 200px;
 }
-.password {
-  top: 720px;
-}
-.label {
+
+main .p {
+  font-size: 24px;
   font-style: normal;
   font-weight: bold;
-  font-size: 36px;
-  line-height: 42px;
-  display: flex;
   align-items: center;
   text-align: center;
-  color: #faf6f6;
-  position: absolute;
-  position: absolute;
-  width: 123px;
-  height: 47px;
-  left: 167px;
-}
-.label-name {
-  top: 118px;
+  color: #1ffe5d;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 0.4em;
 }
 
-.label-user {
-  width: 293px;
-  top: 303px;
+main div.header {
+  display: grid;
+  grid-row: 2;
+  align-content: center;
+  justify-content: center;
 }
 
-.label-email {
-  top: 488px;
+.form_register {
+  display: grid;
+  grid-row: 3/12;
 }
 
-.label-senha {
-  top: 673px;
+.div_inp.name {
+  display: grid;
+  grid-row: 3;
+  width: 80%;
+  margin: 0 auto;
 }
 
-#button {
-  position: absolute;
-  width: 357px;
-  height: 130px;
+.div_inp.nick_name {
+  display: grid;
+  grid-row: 4;
+  width: 80%;
+  margin: 0 auto;
 }
 
-.back {
-  left: 62px;
-  top: 987px;
+.div_inp.email {
+  display: grid;
+  grid-row: 5;
+  width: 80%;
+  margin: 0 auto;
 }
 
-.enter {
-  background-color: #1ffe5d;
-  border: #1ffe5d;
-  left: 493px;
-  top: 986px;
+.div_inp.password {
+  display: grid;
+  grid-row: 6;
+  width: 80%;
+  margin: 0 auto;
 }
 
-.choice {
-  position: absolute;
-  width: 93px;
-  height: 66px;
-  left: 410px;
-  top: 852px;
+.div_inp.k_r {
+  display: flex;
+  grid-row: 7;
+  margin: 20px 0 20px 0;
 }
 
-.label-cozinha {
-  width: 134px;
-  height: 43px;
-  left: 320px;
-  top: 922px;
+.div_inp.k_r :hover {
+  color: greenyellow;
 }
 
-.kitchen {
-  width: 22px;
-  height: 22px;
-  left: 282px;
-  top: 932px;
+.input:hover {
+  border-color: greenyellow;
+  background-color: greenyellow;
 }
 
-.label-salao {
-  width: 99px;
-  height: 43px;
-  left: 532px;
-  top: 922px;
+.div_error {
+  display: grid;
+  grid-row: 8;
+  margin: 0 auto;
+  color: #1ffe5d;
 }
 
-.saloon {
-  width: 22px;
-  height: 22px;
-  left: 494px;
-  top: 932px;
+.dv_bt {
+  display: flex;
+  grid-row: 9;
+  margin: 0 auto;
 }
 
-.trouble {
-  width: 691px;
-  height: 96px;
-  left: 111px;
-  top: 1154px;
+.label {
+  margin: 10px;
+  text-align: initial;
 }

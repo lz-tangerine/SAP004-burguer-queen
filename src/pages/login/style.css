@@ -29,19 +29,23 @@ main div.header {
   justify-content: center;
 }
 
-.formLogin {
+.form_login {
   display: grid;
   grid-row: 3/7;
 }
 
-.div_inp_email {
+.div_inp.email {
   display: grid;
   grid-row: 3;
+  width: 80%;
+  margin: 0 auto;
 }
 
-.div_inp_senha {
+.div_inp.password {
   display: grid;
   grid-row: 4;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .div_error {
@@ -51,20 +55,10 @@ main div.header {
   color: #1ffe5d;
   }
 
-.dvBtLogin {
+.dv_bt {
   display: flex;
   grid-row: 6;
   margin: auto;
-}
-
-.div_inp_email {
-  width: 80%;
-  margin: 0 auto;
-}
-
-.div_inp_senha {
-  width: 80%;
-  margin: 0 auto;
 }
 
 .label {

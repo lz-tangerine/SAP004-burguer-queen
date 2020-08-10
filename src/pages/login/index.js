@@ -59,49 +59,48 @@ export default class Index extends Component {
           <img alt="" src={logo}></img>
         </div>
 
-        
-        <form class="formLogin" name="formLogin" onSubmit={this.submitLogin}>
-            <div className="div_inp_email">
-              <label className="label label-email">Email</label>
-              <input
-                name="email"
-                type="email"
-                className="email input"
-                required="required"
-                placeholder="digite seu email"
-                onChange={e => this.setState({ email: e.target.value })}
-              />
-            </div>
 
-            <div className="div_inp_senha">
-              <label className="label label-senha">Senha</label>
-              <input
-                name="password"
-                type="password"
-                minLength="6"
-                required="required"
-                className="password input "
-                placeholder="minimo de 6 digitos"
-                onChange={e => this.setState({ password: e.target.value })}
-              />
-            </div>
+        <form className="form_login" name="formLogin" onSubmit={this.submitLogin}>
+          <div className="div_inp email">
+            <label className="label label-email">Email</label>
+            <input
+              name="email"
+              type="email"
+              className="email input"
+              required="required"
+              placeholder="digite seu email"
+              onChange={e => this.setState({ email: e.target.value })}
+            />
+          </div>
 
-            <div className="div_error">
-              {this.state.error && <p>{this.state.error}</p>}
-            </div>
+          <div className="div_inp password">
+            <label className="label label-senha">Senha</label>
+            <input
+              name="password"
+              type="password"
+              minLength="6"
+              required="required"
+              className="password input "
+              placeholder="minimo de 6 digitos"
+              onChange={e => this.setState({ password: e.target.value })}
+            />
+          </div>
 
-            <div className="dvBtLogin">
-              <Link className="buttons bg-primary" to="/">
-                Voltar
+          <div className="div_error">
+            {this.state.error && <p>{this.state.error}</p>}
+          </div>
+
+          <div className="dv_bt">
+            <Link className="buttons bg-primary" to="/">
+              Voltar
               </Link>
-              <button type="submit" className="buttons bg-action">
-                Entrar
+            <button type="submit" className="buttons bg-action">
+              Entrar
               </button>
-            </div>
+          </div>
 
-          </form>
+        </form>
 
-        
         <p className="forgot">Esqueceu a senha?</p>
 
       </main >
