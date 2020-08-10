@@ -35,3 +35,65 @@ export default class Index extends Component {
     )
   }
 }
+
+/**
+  requests = [
+    {
+      id: '',
+      request_number: '123445',
+      table: '03',
+      date: '2020-08-10',
+      hour: '13:50',
+      itens:  [
+        {
+          id: '',
+          qtd: '2',
+          name: 'Hamburguer Duplo',
+          value: 15.40
+        },
+        {
+          id: '',
+          qtd: '2',
+          name: 'Coca cola',
+          value: 5.50
+        }
+      ]
+      status: 'preparo'
+    }
+  ] 
+
+
+  products = [
+    {
+      id: '',
+      name: 'Café americano',
+      category: 'breakfast',
+      category_display: 'Café da manhã',
+      price: 10.00
+    },
+    {
+      id: '',
+      name: 'Café com leite',
+      category: 'breakfast',
+      category_display: 'Café da manhã',
+      price: 5.00
+    },
+    {
+      id: '',
+      name: 'Haburguer simples',
+      category: 'lunch',
+      category_display: 'Almoço',
+      price: 16.00
+    },
+    {
+      id: '',
+      name: 'Haburguer Duplo',
+      category: 'lunch',
+      category_display: 'Almoço',
+      price: 19.00
+    }
+  ]
+
+
+  // ['preparo', 'pronto', 'entregue']
+ */
