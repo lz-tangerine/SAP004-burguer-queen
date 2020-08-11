@@ -18,28 +18,39 @@ export default class Main extends Component {
   render() {
     return (
       <main>
-        <div className="logo">
+
+        <div className="header">
           <img alt="" src={logo}></img>
         </div>
-        <p>Bem vindo CK Lover!</p>
-        <p>
-          Entre com seu email e senha em Login
-          <br /> ou <br />
-          Registre um novo usuário!
-        </p>
-        <div>
-          <Link className="buttons bg-primary" to="/login">
-            Login
-          </Link>
-          <Link className="buttons bg-primary" to="/register">
-            Registre-se
-          </Link>
+
+        <div className="middle">
+          <p className="p">Bem vindo CK Lover!</p>
+          <p className="p">
+            Entre com seu email e senha em Login
+            <br /> ou <br />
+            Registre um novo usuário!
+          </p>
         </div>
-        <p className="trouble">
-          Problemas com seu login?
-          <br />
-          Clique aqui!
-        </p>
+
+        <div className="buttons_menu">
+          <div className="content_menu" >
+            <Link className="buttons bg-primary" to="/login">
+              Login
+            </Link>
+            <Link className="buttons bg-primary" to="/register">
+              Registre-se
+            </Link>
+          </div>
+        </div>
+
+        <div className="footer">
+          <p className="p">
+            Problemas com seu login?
+            <br />
+            Clique aqui!
+          </p>
+        </div>
+
       </main>
     )
   }

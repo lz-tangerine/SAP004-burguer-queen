@@ -31,9 +31,9 @@ main div.header {
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-template-areas:
-    'a1 a2 a3 a4 a4 a4'
-    'b1 b1 b1 a4 a4 a4'
-    'c1 c1 . a4 a4 a4';
+    'a1 a2 a3 a4 a4 a4 a5'
+    'b1 b1 b1 a4 a4 a4 a5'
+    'c1 c1 . a4 a4 a4 a5';
   grid-row: 3;
   width: 90%;
   height: 200px;
@@ -70,4 +70,8 @@ main div.header {
 
 .request_card .status {
   grid-area: c1;
+}
+
+.request_card .status {
+  grid-area: a5;
 }
