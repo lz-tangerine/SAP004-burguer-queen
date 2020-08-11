@@ -6,50 +6,8 @@ import './style.css'
 export default class Request extends Component {
   state = {
     products: {
-      breakfast: [
-        // {
-        //   order: 2,
-        //   name: 'Café expresso',
-        //   price: 5.0,
-        // },
-        // {
-        //   order: 2,
-        //   name: 'Café com leite',
-        //   price: 6.0,
-        // },
-        // {
-        //   order: 2,
-        //   name: 'Misto Quente',
-        //   price: 7.0,
-        // },
-        // {
-        //   order: 1,
-        //   name: 'Suco Natural',
-        //   price: 7.0,
-        // },
-      ],
-      lunch: [
-        {
-          order: 1,
-          name: 'Lanche 1',
-          price: 7.0,
-        },
-        {
-          order: 3,
-          name: 'Lanche 2',
-          price: 9.0,
-        },
-        {
-          order: 2,
-          name: 'Lanche 3',
-          price: 7.0,
-        },
-        {
-          order: 4,
-          name: 'Carne adicional',
-          price: 2.0,
-        },
-      ],
+      breakfast: [],
+      lunch: [],
     },
     request: {
       products: [],
@@ -62,14 +20,12 @@ export default class Request extends Component {
     firebase
       .firestore()
       .collection('menu')
-      //.where('category', '==', 'breackfast')
       .get()
       .then((docs) => {
         const products = {
           breakfast: [],
           lunch: [],
         }
-
         docs.forEach((doc) => {
           const productFirebase = doc.data()
           if (productFirebase.category === 'breackfast') {
@@ -125,21 +81,57 @@ export default class Request extends Component {
     )
   }
 
+  removeProductRequest = (event) => {
+    const { request } = this.state
+    const product = JSON.parse(event.target.attributes['data-item'].value)
+
+    const productIndex = request.products.findIndex((element, index, array) => {
+      return element.name === product.name ? true : false
+    })
+
+    if (productIndex >= 0) {
+      request.products[productIndex].qtd--
+      if (request.products[productIndex].qtd === 0) {
+        request.products.splice(productIndex, 1)
+      }
+    }
+
+    let total = 0
+    request.products.forEach((currentValue) => {
+      total += currentValue.price * currentValue.qtd
+    })
+
+    this.setState({ request, total })
+  }
+
   renderRequest = (product, index) => {
     return (
-      <li
-        onClick={this.selectProduct}
-        data-item={JSON.stringify(product)}
-        key={index}
-      >
+      <li data-item={JSON.stringify(product)} key={index}>
         {product.qtd} x {product.name} R$ {product.price.toFixed(2)}
+        <span
+          onClick={this.removeProductRequest}
+          data-item={JSON.stringify(product)}
+        >
+          Remover
+        </span>
       </li>
     )
+  }
+
+  changeMenuRequest = (event) => {
+    this.setState({
+      categorySelected: event.target.innerText.toLowerCase(),
+    })
   }
 
   render() {
     return (
       <>
+        <div className="menu_request">
+          <span onClick={this.changeMenuRequest}>Breakfast</span>{' '}
+          <span onClick={this.changeMenuRequest}>Lunch</span>
+        </div>
+
         <ul className="ul_products" key="products">
           {this.state.products[this.state.categorySelected].map(
             this.renderProduct,
