@@ -65,28 +65,24 @@ export default class Index extends Component {
 
   products = [
     {
-      id: '',
       name: 'Café americano',
       category: 'breakfast',
       category_display: 'Café da manhã',
       price: 10.00
     },
     {
-      id: '',
       name: 'Café com leite',
       category: 'breakfast',
       category_display: 'Café da manhã',
       price: 5.00
     },
     {
-      id: '',
       name: 'Haburguer simples',
       category: 'lunch',
       category_display: 'Almoço',
       price: 16.00
     },
     {
-      id: '',
       name: 'Haburguer Duplo',
       category: 'lunch',
       category_display: 'Almoço',

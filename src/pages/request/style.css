@@ -1,0 +1,20 @@
+.ul_products {
+  color: white;
+}
+
+.ul_products li {
+  cursor: pointer;
+}
+
+.ul_products li:hover {
+  background-color: rgb(69, 104, 92);
+}
+
+.ul_request {
+  background-color: white;
+  color: black;
+}
+
+.total {
+  color: white;
+}
