@@ -45,6 +45,22 @@ body {
   transition: all 0.2s;
 }
 
+.buttonss {
+  display: inline-block;
+  text-decoration: none;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 36px;
+  text-align: center;
+  color: #000000;
+  padding: 0.4em;
+  cursor: pointer;
+  min-width: 200px;
+  margin: 0.4em;
+  transition: all 0.2s;
+}
+
 .bg-primary {
   background: #ff7901;
 }

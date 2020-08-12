@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react'
+import React, { /*useState,*/ Component } from 'react'
 import logo from '../../imagens/logo.png'
 import firebase from '../../firebase'
 import './style.css'
@@ -8,6 +8,7 @@ export default class Request extends Component {
     products: {
       breakfast: [],
       lunch: [],
+      order: [],
     },
     request: {
       products: [],
@@ -108,12 +109,12 @@ export default class Request extends Component {
     return (
       <li data-item={JSON.stringify(product)} key={index}>
         {product.qtd} x {product.name} R$ {product.price.toFixed(2)}
-        <span
+        <section
           onClick={this.removeProductRequest}
           data-item={JSON.stringify(product)}
         >
           Remover
-        </span>
+        </section>
       </li>
     )
   }
@@ -126,24 +127,99 @@ export default class Request extends Component {
 
   render() {
     return (
-      <>
-        <div className="menu_request">
-          <span onClick={this.changeMenuRequest}>Breakfast</span>{' '}
-          <span onClick={this.changeMenuRequest}>Lunch</span>
+      <main>
+        <div className="header">
+          <img src={logo} alt="logo" className="logo"></img>
         </div>
-
-        <ul className="ul_products" key="products">
-          {this.state.products[this.state.categorySelected].map(
-            this.renderProduct,
-          )}
-        </ul>
-
-        <ul className="ul_request" key="request">
-          {this.state.request.products.map(this.renderRequest)}
-        </ul>
-
-        <div className="total">Total: R$ {this.state.total.toFixed(2)}</div>
-      </>
+        <div className="box2">
+          <nav className="nav">
+            <button className="button request"> PEDIDOS </button>
+            <button className="button preparation"> PREPARAÇÃO </button>
+          </nav>
+          <div className="menu_request">
+            <button onClick={this.changeMenuRequest}>Breakfast</button>
+            <button onClick={this.changeMenuRequest}>Lunch</button>
+          </div>
+          <ul className="ul_products" key="products">
+            {this.state.products[this.state.categorySelected].map(
+              this.renderProduct,
+            )}
+          </ul>
+          <label className="resumo">Resumo</label>
+          <ul className="ul_request" key="request">
+            {this.state.request.products.map(this.renderRequest)}
+          </ul>
+          <div className="total">Total: R$ {this.state.total.toFixed(2)}</div>
+          <button className="finish">Finalizar pedido</button>
+          <button className="clear">Cancelar pedido</button>
+        </div>
+      </main>
     )
   }
 }
+
+// import React from 'react'
+// import logo from '../../imagens/logo.png'
+// import './style.css'
+// import FourButton from '../../components/FourButton/FourButton'
+// import TwoButton from '../../components/TwoButton/TwoButton'
+
+// const Request = () => {
+//   return (
+// <main>
+//   <div>
+//     <img src={logo} alt="logo" className="logo"></img>
+//   </div>
+//   <nav>
+//     <button className="nav request"> PEDIDOS </button>
+//     <button className="nav preparation"> PREPARAÇÃO </button>
+//   </nav>
+//       <div>
+//         <FourButton
+//           className="breakfast"
+//           p="Café da manhã"
+//           classNamePrimary="americanCoffee"
+//           namePrimary="Café Americano R$ 5,00"
+//           classNameSecond="milkCoffee"
+//           nameSecond="Café com leite R$ 7,00"
+//           classNameThird="sandwich"
+//           nameThird="Misto quente R$ 10,00"
+//           classNameFourth="juice"
+//           nameFourth="Suco de fruta natural R$ 7,00"
+//         />
+//         <TwoButton
+//           className="hamburguer"
+//           p="Hamburguer"
+//           classNamePrimary="simpleHamburguer"
+//           namePrimary="Hamburguer Simples R$ 10,00"
+//           classNameSecond="doubleHamburguer"
+//           nameSecond="Hamburguer Duplo R$ 15,00"
+//         />
+
+//         <TwoButton
+//           className="sideDish"
+//           p="Acompanhamentos"
+//           classNamePrimary="fries"
+//           namePrimary="Batata Frita R$ 5,00"
+//           classNameSecond="onionRing"
+//           nameSecond="Anéis de Cebola R$ 5,00"
+//         />
+
+//         <FourButton
+//           className="drinks"
+//           p="Bebidas"
+//           classNamePrimary="water500"
+//           namePrimary="Água 500ml R$ 5,00"
+//           classNameSecond="water750"
+//           nameSecond="Água 750ml R$ 7,00"
+//           classNameThird="soda500"
+//           nameThird="Refrigerante 500ml R$ 7,00"
+//           classNameFourth="soda750"
+//           nameFourth="Refrigerante 750ml R$ 10,00"
+//         />
+//       </div>
+//     </main>
+//   )
+// }
+
+// export default Request
