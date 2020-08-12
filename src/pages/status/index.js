@@ -1,8 +1,71 @@
 import React, { Component } from 'react'
 import logo from '../../imagens/logo.png'
+import firebase from '../../firebase'
+import moment from 'moment'
 import './style.css'
 
 export default class Index extends Component {
+  state = {
+    requests: [
+      // {
+      //   table: '',
+      //   products: [],
+      //   status: 'A FAZER', // PREPARANDO, FEITO, ENTREGUE
+      //   date: '',
+      // },
+    ],
+  }
+
+  componentDidMount() {
+    firebase
+      .firestore()
+      .collection('request')
+      .get()
+      .then((docs) => {
+        let requests = []
+
+        docs.forEach((doc) => {
+          const request = doc.data()
+          if (request.status != 'ENTREGUE') {
+            requests.push(request)
+          }
+        })
+
+        this.setState({ requests })
+      })
+  }
+
+  renderProduct = (product, index) => {
+    return (
+      <li key={index}>
+        {product.qtd} {product.name}
+      </li>
+    )
+  }
+
+  renderRequest = (request, index) => {
+    request.status = 'FEITO'
+    const className =
+      request.status == 'A FAZER'
+        ? 'request_card pending'
+        : request.status == 'FEITO'
+        ? 'request_card done'
+        : 'request_card making'
+
+    return (
+      <section className={className} key={index}>
+        <div className="table">Mesa: {request.table}</div>
+        <div className="time">
+          Data: {moment(request.date.toDate()).format('DD/MM/YYYY')}
+        </div>
+        <div className="description">
+          <ul>{request.products.map(this.renderProduct)}</ul>
+        </div>
+        <div className="valor">{request.total}</div>
+      </section>
+    )
+  }
+
   render() {
     return (
       <main>
@@ -11,26 +74,15 @@ export default class Index extends Component {
         </div>
 
         <h1 className="h1">PEDIDOS A PREPARAR</h1>
-        <p className="number">Pedido</p>
-        <p className="table">Mesa</p>
-        <p className="time">Hora</p>
-        <p className="descripition">Resumo</p>
-        <p className="valor">R$</p>
-        <p>Status</p>
-        <section className="request_card pending">
-          <div className="number">4552</div>
-          <div className="table">05</div>
-          <div className="time">08:30</div>
-          <div className="description">1 hamburger e coca</div>
-          <div className="valor">5,00</div>
-        </section>
 
-        <section className="request_card making">
+        {this.state.requests.map(this.renderRequest)}
+
+        {/* <section className="request_card making">
           <div className="number">4552</div>
           <div className="table">05</div>
           <div className="time">08:30</div>
           <div className="description">1 hamburger e coca</div>
-        </section>
+        </section> */}
       </main>
     )
   }

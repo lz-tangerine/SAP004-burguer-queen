@@ -29,8 +29,8 @@ const Routes = () => {
         <Route exact path="/" component={Main} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <PrivateRoute exact path="/kitchen" component={Kitchen} />
-        <PrivateRoute exact path="/request" component={Request} />
+        <PrivateRoute path="/kitchen" component={Kitchen} />
+        <PrivateRoute path="/request" component={Request} />
         <PrivateRoute path="/status" component={Status} />
         <Route componete={() => <div>Página 404</div>} />
       </Switch>

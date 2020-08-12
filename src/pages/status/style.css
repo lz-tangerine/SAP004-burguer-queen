@@ -49,7 +49,10 @@ main div.header {
 
 .making {
   background-color: rgba(241, 241, 116, 0.973);
-  grid-row: 4;
+}
+
+.done {
+  background-color: rgb(161, 190, 154);
 }
 
 .request_card .table {
