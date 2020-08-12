@@ -52,6 +52,10 @@ main div.header {
   grid-row: 4;
 }
 
+.done {
+  background-color: rgb(161, 190, 154);
+}
+
 .request_card .table {
   grid-area: a2;
 }
