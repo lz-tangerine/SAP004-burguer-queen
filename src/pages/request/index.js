@@ -31,6 +31,7 @@ export default class Request extends Component {
           breakfast: [],
           lunch: [],
         }
+        
         docs.forEach((doc) => {
           const productFirebase = doc.data()
           if (productFirebase.category === 'breackfast') {
