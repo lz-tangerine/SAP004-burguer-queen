@@ -26,7 +26,9 @@ export default class Index extends Component {
 
         docs.forEach((doc) => {
           const request = doc.data()
-          requests.push(request)
+          if (request.status != 'ENTREGUE') {
+            requests.push(request)
+          }
         })
 
         this.setState({ requests })
@@ -42,8 +44,16 @@ export default class Index extends Component {
   }
 
   renderRequest = (request, index) => {
+    request.status = 'FEITO'
+    const className =
+      request.status == 'A FAZER'
+        ? 'request_card pending'
+        : request.status == 'FEITO'
+        ? 'request_card done'
+        : 'request_card making'
+
     return (
-      <section className="request_card pending" key={index}>
+      <section className={className} key={index}>
         <div className="table">Mesa: {request.table}</div>
         <div className="time">
           Data: {moment(request.date.toDate()).format('DD/MM/YYYY')}
