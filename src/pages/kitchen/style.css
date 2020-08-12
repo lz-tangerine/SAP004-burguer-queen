@@ -8,7 +8,7 @@ main {
 }
 
 main div.header img {
-  width: 200px;
+  width: 80%;
 }
 
 main div.header {
@@ -70,4 +70,8 @@ main div.header {
 
 .request_card .status {
   grid-area: c1;
+}
+
+@media {
+  
 }

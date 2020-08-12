@@ -3,12 +3,11 @@ import './style.css'
 
 const Button = (props) => {
   return (
-    <button
-      id="button"
-      className={props.className}
-      name={props.name}
-      onClick={props.onClick}
-    ></button>
+    <button id="button" className={props.className}>
+      {props.name}
+      {props.onClick}
+      {props.type}
+    </button>
   )
 }
 
