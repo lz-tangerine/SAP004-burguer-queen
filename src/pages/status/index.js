@@ -16,6 +16,23 @@ export default class Index extends Component {
     ],
   }
 
+  changeOrderDeliver = (event) => {
+    const requestId = event.target.attributes['data-key'].value
+
+    const { requests } = this.state
+
+    const requestIndex = requests.findIndex((element, index, array) => {
+      return element.id === requestId ? true : false
+    })
+
+    firebase.firestore().collection('request').doc(requestId).update({
+      status: 'ENTREGUE',
+    })
+
+    requests.splice(requestIndex, 1)
+    this.setState({ requests })
+  }
+
   componentDidMount() {
     firebase
       .firestore()
@@ -25,8 +42,10 @@ export default class Index extends Component {
         let requests = []
 
         docs.forEach((doc) => {
-          const request = doc.data()
-          if (request.status != 'ENTREGUE') {
+          let request = doc.data()
+          request.id = doc.id
+
+          if (request.status !== 'ENTREGUE') {
             requests.push(request)
           }
         })
@@ -44,24 +63,37 @@ export default class Index extends Component {
   }
 
   renderRequest = (request, index) => {
-    request.status = 'FEITO'
+    // request.status = 'FEITO'
     const className =
-      request.status == 'A FAZER'
+      request.status === 'A FAZER'
         ? 'request_card pending'
-        : request.status == 'FEITO'
+        : request.status === 'FEITO'
         ? 'request_card done'
         : 'request_card making'
 
     return (
       <section className={className} key={index}>
+        <div className="status">Status do pedido: {request.status}</div>
         <div className="table">Mesa: {request.table}</div>
         <div className="time">
           Data: {moment(request.date.toDate()).format('DD/MM/YYYY')}
+        </div>
+        <div className="hour">
+          Hora: {moment(request.date.toDate()).format('00:00')}
         </div>
         <div className="description">
           <ul>{request.products.map(this.renderProduct)}</ul>
         </div>
         <div className="valor">{request.total}</div>
+        {request.status === 'FEITO' && (
+          <button
+            data-key={request.id}
+            className="buttons bg-action-request-menu button-small"
+            onClick={this.changeOrderDeliver}
+          >
+            Entregue
+          </button>
+        )}
       </section>
     )
   }
@@ -87,61 +119,3 @@ export default class Index extends Component {
     )
   }
 }
-
-/**
-  requests = [
-    {
-      id: '',
-      request_number: '123445',
-      table: '03',
-      date: '2020-08-10',
-      hour: '13:50',
-      itens:  [
-        {
-          id: '',
-          qtd: '2',
-          name: 'Hamburguer Duplo',
-          value: 15.40
-        },
-        {
-          id: '',
-          qtd: '2',
-          name: 'Coca cola',
-          value: 5.50
-        }
-      ]
-      status: 'preparo'
-    }
-  ] 
-
-
-  products = [
-    {
-      name: 'Café americano',
-      category: 'breakfast',
-      category_display: 'Café da manhã',
-      price: 10.00
-    },
-    {
-      name: 'Café com leite',
-      category: 'breakfast',
-      category_display: 'Café da manhã',
-      price: 5.00
-    },
-    {
-      name: 'Haburguer simples',
-      category: 'lunch',
-      category_display: 'Almoço',
-      price: 16.00
-    },
-    {
-      name: 'Haburguer Duplo',
-      category: 'lunch',
-      category_display: 'Almoço',
-      price: 19.00
-    }
-  ]
-
-
-  // ['preparo', 'pronto', 'entregue']
- */

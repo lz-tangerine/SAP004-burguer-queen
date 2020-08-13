@@ -55,7 +55,7 @@ main div.header {
   background-color: rgb(161, 190, 154);
 }
 
-.request_card .table {
+/* .request_card .table {
   grid-area: a2;
 }
 
@@ -77,4 +77,4 @@ main div.header {
 
 .request_card .status {
   grid-area: a5;
-}
+} */
