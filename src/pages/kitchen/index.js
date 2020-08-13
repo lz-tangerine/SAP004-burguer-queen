@@ -73,27 +73,27 @@ export default class Index extends Component {
 
     return (
       <section className={className} key={index}>
-        <div className="status">Status do pedido: {request.status}</div>
-        <div className="table">Mesa: {request.table}</div>
-        <div className="time">
-          Data: {moment(request.date.toDate()).format('DD/MM/YYYY')}
+        <div className="request_card_P">
+          <div className="table">Mesa: {request.table}</div>
+          <div className="time">
+            <div className="status"> - Status: {request.status}</div>
+          </div>
+          Dt: {moment(request.date.toDate()).format('DD/MM/YYYY')}
+          H: {moment(request.date.toDate()).format('00:00')}
+          <div className="description">
+            <ul>{request.products.map(this.renderProduct)}</ul>
+          </div>
+          <div className="valor">{request.total}</div>
+          {request.status === 'A FAZER' && (
+            <button
+              data-key={request.id}
+              className="buttons bg-action-request-menu button-small"
+              onClick={this.changeOrderDone}
+            >
+              Feito
+            </button>
+          )}
         </div>
-        <div className="hour">
-          Hora: {moment(request.date.toDate()).format('00:00')}
-        </div>
-        <div className="description">
-          <ul>{request.products.map(this.renderProduct)}</ul>
-        </div>
-        <div className="valor">{request.total}</div>
-        {request.status === 'A FAZER' && (
-          <button
-            data-key={request.id}
-            className="buttons bg-action-request-menu button-small"
-            onClick={this.changeOrderDone}
-          >
-            Feito
-          </button>
-        )}
       </section>
     )
   }

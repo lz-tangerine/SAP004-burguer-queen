@@ -73,6 +73,7 @@ export default class Index extends Component {
 
     return (
       <section className={className} key={index}>
+        <div className="request_card_P">
         <div className="status">Status do pedido: {request.status}</div>
         <div className="table">Mesa: {request.table}</div>
         <div className="time">
@@ -94,6 +95,7 @@ export default class Index extends Component {
             Entregue
           </button>
         )}
+        </div>
       </section>
     )
   }

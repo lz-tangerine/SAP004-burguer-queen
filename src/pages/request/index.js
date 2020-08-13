@@ -21,7 +21,7 @@ export default class Request extends Component {
     error: '',
   }
 
-  componentDidMount() {
+  loadProducts = () => {
     firebase
       .firestore()
       .collection('menu')
@@ -31,7 +31,7 @@ export default class Request extends Component {
           breakfast: [],
           lunch: [],
         }
-        
+
         docs.forEach((doc) => {
           const productFirebase = doc.data()
           if (productFirebase.category === 'breackfast') {
@@ -51,21 +51,20 @@ export default class Request extends Component {
       })
   }
 
-  selectProduct = (event) => {
+  componentDidMount() {
+    this.loadProducts()
+  }
+
+  selectProduct = (index) => {
     let total = this.state.total
     const { request } = this.state
+    const product = this.state.products[this.state.categorySelected][index]
 
-    const product = JSON.parse(
-      event.target.attributes['data-item']
-        ? event.target.attributes['data-item'].value
-        : event.target.parentElement.attributes['data-item'].value,
-    )
-
-    const productIndex = request.products.findIndex((element, index, array) => {
+    const productIndex = request.products.findIndex((element) => {
       return element.name === product.name ? true : false
     })
 
-    if (productIndex >= 0) {
+    if (request.products[productIndex]) {
       request.products[productIndex].qtd++
     } else {
       request.products.push({
@@ -82,30 +81,19 @@ export default class Request extends Component {
 
   renderProduct = (product, index) => {
     return (
-      <li
-        onClick={this.selectProduct}
-        key={index}
-        data-item={JSON.stringify(product)}
-      >
+      <li onClick={() => this.selectProduct(index)}>
         <span>{product.name}</span>
         <span>R$ {product.price.toFixed(2)}</span>
       </li>
     )
   }
 
-  removeProductRequest = (event) => {
+  removeProductRequest = (index) => {
     const { request } = this.state
-    const product = JSON.parse(event.target.attributes['data-item'].value)
 
-    const productIndex = request.products.findIndex((element, index, array) => {
-      return element.name === product.name ? true : false
-    })
-
-    if (productIndex >= 0) {
-      request.products[productIndex].qtd--
-      if (request.products[productIndex].qtd === 0) {
-        request.products.splice(productIndex, 1)
-      }
+    request.products[index].qtd--
+    if (request.products[index].qtd === 0) {
+      request.products.splice(index, 1)
     }
 
     let total = 0
@@ -118,13 +106,15 @@ export default class Request extends Component {
 
   renderRequest = (product, index) => {
     return (
-      <li data-item={JSON.stringify(product)} key={index}>
+      <li>
         <span>
           {product.qtd} x {product.name}
         </span>
+
         <span>R$ {product.price.toFixed(2)}</span>
+
         <section
-          onClick={this.removeProductRequest}
+          onClick={() => this.removeProductRequest(index)}
           data-item={JSON.stringify(product)}
         >
           Remover
@@ -241,69 +231,3 @@ export default class Request extends Component {
     )
   }
 }
-
-// import React from 'react'
-// import logo from '../../imagens/logo.png'
-// import './style.css'
-// import FourButton from '../../components/FourButton/FourButton'
-// import TwoButton from '../../components/TwoButton/TwoButton'
-
-// const Request = () => {
-//   return (
-// <main>
-//   <div>
-//     <img src={logo} alt="logo" className="logo"></img>
-//   </div>
-//   <nav>
-//     <button className="nav request"> PEDIDOS </button>
-//     <button className="nav preparation"> PREPARAÇÃO </button>
-//   </nav>
-//       <div>
-//         <FourButton
-//           className="breakfast"
-//           p="Café da manhã"
-//           classNamePrimary="americanCoffee"
-//           namePrimary="Café Americano R$ 5,00"
-//           classNameSecond="milkCoffee"
-//           nameSecond="Café com leite R$ 7,00"
-//           classNameThird="sandwich"
-//           nameThird="Misto quente R$ 10,00"
-//           classNameFourth="juice"
-//           nameFourth="Suco de fruta natural R$ 7,00"
-//         />
-//         <TwoButton
-//           className="hamburguer"
-//           p="Hamburguer"
-//           classNamePrimary="simpleHamburguer"
-//           namePrimary="Hamburguer Simples R$ 10,00"
-//           classNameSecond="doubleHamburguer"
-//           nameSecond="Hamburguer Duplo R$ 15,00"
-//         />
-
-//         <TwoButton
-//           className="sideDish"
-//           p="Acompanhamentos"
-//           classNamePrimary="fries"
-//           namePrimary="Batata Frita R$ 5,00"
-//           classNameSecond="onionRing"
-//           nameSecond="Anéis de Cebola R$ 5,00"
-//         />
-
-//         <FourButton
-//           className="drinks"
-//           p="Bebidas"
-//           classNamePrimary="water500"
-//           namePrimary="Água 500ml R$ 5,00"
-//           classNameSecond="water750"
-//           nameSecond="Água 750ml R$ 7,00"
-//           classNameThird="soda500"
-//           nameThird="Refrigerante 500ml R$ 7,00"
-//           classNameFourth="soda750"
-//           nameFourth="Refrigerante 750ml R$ 10,00"
-//         />
-//       </div>
-//     </main>
-//   )
-// }
-
-// export default Request
