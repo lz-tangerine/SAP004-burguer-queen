@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React, { useState, Component } from 'react'
 import logo from '../../imagens/logo.png'
 import firebase from '../../firebase'
 import './style.css'
+import Modal from '../../components/Modal/Modal.js'
 
 export default class Request extends Component {
   state = {
@@ -31,7 +32,7 @@ export default class Request extends Component {
           breakfast: [],
           lunch: [],
         }
-        
+
         docs.forEach((doc) => {
           const productFirebase = doc.data()
           if (productFirebase.category === 'breackfast') {
@@ -74,7 +75,6 @@ export default class Request extends Component {
         qtd: 1,
       })
     }
-
     total += product.price
 
     this.setState({ request, total })
