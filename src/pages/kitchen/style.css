@@ -1,21 +1,9 @@
 main {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 30px 1fr;
-  max-width: 100%;
-  max-height: 100%;
-  grid-gap: 20px;
+  display: flex;
 }
 
 main div.header img {
   width: 200px;
-}
-
-main div.header {
-  display: grid;
-  grid-row: 1;
-  align-content: center;
-  justify-content: center;
 }
 
 .h1 {
@@ -26,52 +14,41 @@ main div.header {
   justify-content: center;
 }
 
-.request_card {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-areas:
-    'a1 a2 a3 a4 a4 a4'
-    'b1 b1 b1 a4 a4 a4'
-    'c1 c1 . a4 a4 a4';
-  grid-row: 3;
-  width: 90%;
-  height: 200px;
-  padding: 20px;
-  margin: 0 auto;
-  border-radius: 15px;
-  align-items: top;
-}
-
 .pending {
   background: #eec5a1;
+  margin: 2%;
+}
+.request_card {
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  border-radius: 18%;
+}
+
+.request_card_P {
+  flex-wrap: wrap;
+  color: black;
+  font-size: 19px;
+  width: 18em;
+  height: 20em;
+  min-height: 25%;
+  margin: 10px;
+  padding: 1em 1em 2em 2em;
+}
+
+.status {
+  color: red;
+}
+
+.description {
+  background-color: blanchedalmond;
+  margin: 2%;
 }
 
 .making {
   background-color: rgba(241, 241, 116, 0.973);
-  grid-row: 4;
 }
 
 .done {
   background-color: rgb(161, 190, 154);
-}
-
-.request_card .table {
-  grid-area: a2;
-}
-
-.request_card .number {
-  grid-area: a1;
-}
-
-.request_card .time {
-  grid-area: a3;
-}
-
-.request_card .description {
-  grid-area: a4;
-}
-
-.request_card .status {
-  grid-area: c1;
 }

@@ -1,4 +1,4 @@
-main {
+/* main {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 30px 1fr;
@@ -53,9 +53,9 @@ main div.header {
 
 .done {
   background-color: rgb(161, 190, 154);
-}
+} */
 
-.request_card .table {
+/* .request_card .table {
   grid-area: a2;
 }
 
@@ -77,4 +77,4 @@ main div.header {
 
 .request_card .status {
   grid-area: a5;
-}
+} */

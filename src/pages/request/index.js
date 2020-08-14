@@ -21,7 +21,7 @@ export default class Request extends Component {
     error: '',
   }
 
-  componentDidMount() {
+  loadProducts = () => {
     firebase
       .firestore()
       .collection('menu')
@@ -51,21 +51,20 @@ export default class Request extends Component {
       })
   }
 
-  selectProduct = (event) => {
+  componentDidMount() {
+    this.loadProducts()
+  }
+
+  selectProduct = (index) => {
     let total = this.state.total
     const { request } = this.state
+    const product = this.state.products[this.state.categorySelected][index]
 
-    const product = JSON.parse(
-      event.target.attributes['data-item']
-        ? event.target.attributes['data-item'].value
-        : event.target.parentElement.attributes['data-item'].value,
-    )
-
-    const productIndex = request.products.findIndex((element, index, array) => {
+    const productIndex = request.products.findIndex((element) => {
       return element.name === product.name ? true : false
     })
 
-    if (productIndex >= 0) {
+    if (request.products[productIndex]) {
       request.products[productIndex].qtd++
     } else {
       request.products.push({
@@ -81,30 +80,19 @@ export default class Request extends Component {
 
   renderProduct = (product, index) => {
     return (
-      <li
-        onClick={this.selectProduct}
-        key={index}
-        data-item={JSON.stringify(product)}
-      >
+      <li onClick={() => this.selectProduct(index)}>
         <span>{product.name}</span>
         <span>R$ {product.price.toFixed(2)}</span>
       </li>
     )
   }
 
-  removeProductRequest = (event) => {
+  removeProductRequest = (index) => {
     const { request } = this.state
-    const product = JSON.parse(event.target.attributes['data-item'].value)
 
-    const productIndex = request.products.findIndex((element, index, array) => {
-      return element.name === product.name ? true : false
-    })
-
-    if (productIndex >= 0) {
-      request.products[productIndex].qtd--
-      if (request.products[productIndex].qtd === 0) {
-        request.products.splice(productIndex, 1)
-      }
+    request.products[index].qtd--
+    if (request.products[index].qtd === 0) {
+      request.products.splice(index, 1)
     }
 
     let total = 0
@@ -117,13 +105,15 @@ export default class Request extends Component {
 
   renderRequest = (product, index) => {
     return (
-      <li data-item={JSON.stringify(product)} key={index}>
+      <li>
         <span>
           {product.qtd} x {product.name}
         </span>
+
         <span>R$ {product.price.toFixed(2)}</span>
+
         <section
-          onClick={this.removeProductRequest}
+          onClick={() => this.removeProductRequest(index)}
           data-item={JSON.stringify(product)}
         >
           Remover
@@ -163,7 +153,9 @@ export default class Request extends Component {
       this.setState({ error })
     }
 
-    request.date = new Date()
+    request.start_date = new Date()
+    request.end_date = null
+
     const result = await firebase.firestore().collection('request').add(request)
     if (result.id) {
       this.props.history.push('/status')
