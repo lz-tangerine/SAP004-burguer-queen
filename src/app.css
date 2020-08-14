@@ -21,13 +21,32 @@ body {
 
 #container {
   background-image: url(./imagens/background.jpg);
-  background-repeat: no-repeat;
+  background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-  width: 912px;
-  height: 1368px;
-  margin: 0 auto;
+  /* background-attachment: fixed;
+  background-size: cover;
+  width: 100x;
+  height: 100vh;
+  margin: 0 auto; */
 }
+
+#container section {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+/* {
+  border-radius: 5%;
+  font-size: 80%;
+  width: 80%;
+  float: left;
+  padding: 1em;
+  background:  rgba(42, 82, 147, 80%);
+} */
 
 .buttons {
   display: inline-block;

@@ -1,8 +1,8 @@
 import * as firebase from 'firebase'
 import 'firebase/auth'
-import "firebase/firestore"
-import "firebase/database"
-import "firebase/storage"
+import 'firebase/firestore'
+import 'firebase/database'
+import 'firebase/storage'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCYkfRXcJ9XectolmE7HOOCyG5Mij6o20g',

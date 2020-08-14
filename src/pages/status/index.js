@@ -16,7 +16,24 @@ export default class Index extends Component {
     ],
   }
 
-  componentDidMount() {
+  changeOrderDeliver = (event) => {
+    const requestId = event.target.attributes['data-key'].value
+
+    const { requests } = this.state
+
+    const requestIndex = requests.findIndex((element, index, array) => {
+      return element.id === requestId ? true : false
+    })
+
+    firebase.firestore().collection('request').doc(requestId).update({
+      status: 'ENTREGUE',
+    })
+
+    requests.splice(requestIndex, 1)
+    this.setState({ requests })
+  }
+
+  loadRequests = () => {
     firebase
       .firestore()
       .collection('request')
@@ -25,7 +42,23 @@ export default class Index extends Component {
         let requests = []
 
         docs.forEach((doc) => {
-          const request = doc.data()
+          let request = doc.data()
+          request.id = doc.id
+
+          request.start_date = request.date
+            ? moment(request.date.toDate())
+            : moment(request.start_date.toDate())
+          request.end_date = request.end_date
+            ? moment(request.end_date.toDate())
+            : null
+          request.diff_date = moment.duration(
+            request.end_date
+              ? moment(request.end_date.toDate()).diff(
+                  request.start_date.toDate(),
+                )
+              : moment(moment()).diff(request.start_date.toDate()),
+          )
+
           if (request.status !== 'ENTREGUE') {
             requests.push(request)
           }
@@ -33,6 +66,10 @@ export default class Index extends Component {
 
         this.setState({ requests })
       })
+  }
+
+  componentDidMount() {
+    this.loadRequests()
   }
 
   renderProduct = (product, index) => {
@@ -44,7 +81,7 @@ export default class Index extends Component {
   }
 
   renderRequest = (request, index) => {
-    request.status = 'FEITO'
+    // request.status = 'FEITO'
     const className =
       request.status === 'A FAZER'
         ? 'request_card pending'
@@ -54,14 +91,31 @@ export default class Index extends Component {
 
     return (
       <section className={className} key={index}>
-        <div className="table">Mesa: {request.table}</div>
-        <div className="time">
-          Data: {moment(request.date.toDate()).format('DD/MM/YYYY')}
+        <div className="request_card_P">
+          <div className="status">Status do pedido: {request.status}</div>
+          <div className="table">Mesa: {request.table}</div>
+          <div className="time">
+            Data: {request.start_date.format('DD/MM/YYYY HH:mm:ss')}
+          </div>
+          <div className="diff_time">
+            {' '}
+            Tempo na cozinha: {request.diff_date.asMinutes().toFixed(0)} Minutos
+          </div>
+
+          <div className="description">
+            <ul>{request.products.map(this.renderProduct)}</ul>
+          </div>
+          <div className="valor">{request.total}</div>
+          {request.status === 'FEITO' && (
+            <button
+              data-key={request.id}
+              className="buttons bg-action-request-menu button-small"
+              onClick={this.changeOrderDeliver}
+            >
+              Entregue
+            </button>
+          )}
         </div>
-        <div className="description">
-          <ul>{request.products.map(this.renderProduct)}</ul>
-        </div>
-        <div className="valor">{request.total}</div>
       </section>
     )
   }
@@ -87,61 +141,3 @@ export default class Index extends Component {
     )
   }
 }
-
-/**
-  requests = [
-    {
-      id: '',
-      request_number: '123445',
-      table: '03',
-      date: '2020-08-10',
-      hour: '13:50',
-      itens:  [
-        {
-          id: '',
-          qtd: '2',
-          name: 'Hamburguer Duplo',
-          value: 15.40
-        },
-        {
-          id: '',
-          qtd: '2',
-          name: 'Coca cola',
-          value: 5.50
-        }
-      ]
-      status: 'preparo'
-    }
-  ] 
-
-
-  products = [
-    {
-      name: 'Café americano',
-      category: 'breakfast',
-      category_display: 'Café da manhã',
-      price: 10.00
-    },
-    {
-      name: 'Café com leite',
-      category: 'breakfast',
-      category_display: 'Café da manhã',
-      price: 5.00
-    },
-    {
-      name: 'Haburguer simples',
-      category: 'lunch',
-      category_display: 'Almoço',
-      price: 16.00
-    },
-    {
-      name: 'Haburguer Duplo',
-      category: 'lunch',
-      category_display: 'Almoço',
-      price: 19.00
-    }
-  ]
-
-
-  // ['preparo', 'pronto', 'entregue']
- */
