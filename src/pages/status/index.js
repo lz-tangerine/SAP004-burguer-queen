@@ -26,7 +26,7 @@ export default class Index extends Component {
 
         docs.forEach((doc) => {
           const request = doc.data()
-          if (request.status != 'ENTREGUE') {
+          if (request.status !== 'ENTREGUE') {
             requests.push(request)
           }
         })
@@ -46,9 +46,9 @@ export default class Index extends Component {
   renderRequest = (request, index) => {
     request.status = 'FEITO'
     const className =
-      request.status == 'A FAZER'
+      request.status === 'A FAZER'
         ? 'request_card pending'
-        : request.status == 'FEITO'
+        : request.status === 'FEITO'
         ? 'request_card done'
         : 'request_card making'
 

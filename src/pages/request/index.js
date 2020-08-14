@@ -74,7 +74,6 @@ export default class Request extends Component {
         qtd: 1,
       })
     }
-
     total += product.price
 
     this.setState({ request, total })
