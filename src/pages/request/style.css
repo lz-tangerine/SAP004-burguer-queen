@@ -1,5 +1,6 @@
 main {
   display: initial !important;
+  overflow: auto;
 }
 
 nav {
