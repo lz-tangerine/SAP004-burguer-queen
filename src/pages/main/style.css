@@ -7,9 +7,7 @@ main {
   grid-gap: 20px;
 }
 
-main div.header img {
-  width: 200px;
-}
+
 
 main .p {
   font-size: 24px;

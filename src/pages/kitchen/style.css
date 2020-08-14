@@ -3,7 +3,7 @@ main {
 }
 
 main div.header img {
-  width: 200px;
+  width: 80%;
 }
 
 .h1 {
@@ -51,4 +51,8 @@ main div.header img {
 
 .done {
   background-color: rgb(161, 190, 154);
+}
+
+@media {
+  
 }
