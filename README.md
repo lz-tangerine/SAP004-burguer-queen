@@ -18,13 +18,13 @@ Após realizar o login, a página é automaticamente redirecionada conforme a fu
 
 O usuário do salão tem duas abas de utilização:
 
-    Menu Pedidos: O usuário pode adicionar ou excluir itens ao pedido. Ao adicionar os hamburgueres, é necessário selecionar o tipo de Hamburguer (Bovino, Frango ou Vegetariano) e opcionalmente, colocar um adicional de queijo e/ou ovo por R$ 1,00 cada. Ao finalizar, é necessário colocar o numero da mesa. Pode-se também excluir todo o pedido no botão cancelar.
+- Pedidos: O usuário pode adicionar ou excluir itens ao pedido. Ao adicionar os hamburgueres, é necessário selecionar o tipo de Hamburguer (Bovino, Frango ou Vegetariano) e opcionalmente, colocar um adicional de queijo e/ou ovo por R\$ 1,00 cada. Ao finalizar, é necessário colocar o numero da mesa. Pode-se também excluir todo o pedido no botão cancelar.
 
-    Em Entrega: O usuário consegue visualizar em ordem de preparação, todo os pedidos disponíveis para serem entregues. Além disso, consegue visualizar os ultimos pedidos entregues e o tempo de atendimento total (da realização do pedido até ser entregue)
+- Preparo: Em Entrega: O usuário consegue visualizar em ordem de preparação, todo os pedidos disponíveis para serem entregues. Além disso, consegue visualizar os ultimos pedidos entregues e o tempo de atendimento total (da realização do pedido até ser entregue)
 
 O usuário da cozinha tem apenas um ambiente de utilização:
 
-    O usuário visualiza os pedidos em ordem. Ao finalizar a preparação, o usuário deve concluir o pedido, para que seja feita a entrega. Além disso, consegue visualizar os últimos pedidos e o tempo de preparo (ao ser pedido até a finalização do preparo)
+- Cozinha: O usuário visualiza os pedidos em ordem. Ao finalizar a preparação, o usuário deve concluir o pedido, para que seja feita a entrega. Além disso, consegue visualizar os últimos pedidos e o tempo de preparo (ao ser pedido até a finalização do preparo)
 
 ## Considerações Técnicas
 
