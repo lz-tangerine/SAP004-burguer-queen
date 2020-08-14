@@ -1,8 +1,7 @@
-import React, { useState, Component } from 'react'
+import React, { Component } from 'react'
 import logo from '../../imagens/logo.png'
 import firebase from '../../firebase'
 import './style.css'
-import Modal from '../../components/Modal/Modal.js'
 
 export default class Request extends Component {
   state = {
