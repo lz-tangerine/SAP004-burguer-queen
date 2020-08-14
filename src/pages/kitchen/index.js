@@ -27,6 +27,7 @@ export default class Index extends Component {
 
     firebase.firestore().collection('request').doc(requestId).update({
       status: 'FEITO',
+      end_date: new Date(),
     })
 
     requests.splice(requestIndex, 1)
@@ -44,6 +45,20 @@ export default class Index extends Component {
         docs.forEach((doc) => {
           let request = doc.data()
           request.id = doc.id
+
+          request.start_date = request.date
+            ? moment(request.date.toDate())
+            : moment(request.start_date.toDate())
+          request.end_date = request.end_date
+            ? moment(request.end_date.toDate())
+            : null
+          request.diff_date = moment.duration(
+            request.end_date
+              ? moment(request.end_date.toDate()).diff(
+                  request.start_date.toDate(),
+                )
+              : moment(moment()).diff(request.start_date.toDate()),
+          )
 
           if (request.status !== 'ENTREGUE' && request.status !== 'FEITO') {
             requests.push(request)
@@ -75,11 +90,16 @@ export default class Index extends Component {
       <section className={className} key={index}>
         <div className="request_card_P">
           <div className="table">Mesa: {request.table}</div>
+          <div className="status"> - Status: {request.status}</div>
+
           <div className="time">
-            <div className="status"> - Status: {request.status}</div>
+            Data: {request.start_date.format('DD/MM/YYYY HH:mm:ss')}
           </div>
-          Dt: {moment(request.date.toDate()).format('DD/MM/YYYY')}
-          H: {moment(request.date.toDate()).format('00:00')}
+          <div className="diff_time">
+            {' '}
+            Tempo na cozinha: {request.diff_date.asMinutes().toFixed(0)} Minutos
+          </div>
+
           <div className="description">
             <ul>{request.products.map(this.renderProduct)}</ul>
           </div>

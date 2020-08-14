@@ -154,7 +154,9 @@ export default class Request extends Component {
       this.setState({ error })
     }
 
-    request.date = new Date()
+    request.start_date = new Date()
+    request.end_date = null
+
     const result = await firebase.firestore().collection('request').add(request)
     if (result.id) {
       this.props.history.push('/status')

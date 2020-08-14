@@ -33,7 +33,7 @@ export default class Index extends Component {
     this.setState({ requests })
   }
 
-  componentDidMount() {
+  loadRequests = () => {
     firebase
       .firestore()
       .collection('request')
@@ -45,6 +45,20 @@ export default class Index extends Component {
           let request = doc.data()
           request.id = doc.id
 
+          request.start_date = request.date
+            ? moment(request.date.toDate())
+            : moment(request.start_date.toDate())
+          request.end_date = request.end_date
+            ? moment(request.end_date.toDate())
+            : null
+          request.diff_date = moment.duration(
+            request.end_date
+              ? moment(request.end_date.toDate()).diff(
+                  request.start_date.toDate(),
+                )
+              : moment(moment()).diff(request.start_date.toDate()),
+          )
+
           if (request.status !== 'ENTREGUE') {
             requests.push(request)
           }
@@ -52,6 +66,10 @@ export default class Index extends Component {
 
         this.setState({ requests })
       })
+  }
+
+  componentDidMount() {
+    this.loadRequests()
   }
 
   renderProduct = (product, index) => {
@@ -74,27 +92,29 @@ export default class Index extends Component {
     return (
       <section className={className} key={index}>
         <div className="request_card_P">
-        <div className="status">Status do pedido: {request.status}</div>
-        <div className="table">Mesa: {request.table}</div>
-        <div className="time">
-          Data: {moment(request.date.toDate()).format('DD/MM/YYYY')}
-        </div>
-        <div className="hour">
-          Hora: {moment(request.date.toDate()).format('00:00')}
-        </div>
-        <div className="description">
-          <ul>{request.products.map(this.renderProduct)}</ul>
-        </div>
-        <div className="valor">{request.total}</div>
-        {request.status === 'FEITO' && (
-          <button
-            data-key={request.id}
-            className="buttons bg-action-request-menu button-small"
-            onClick={this.changeOrderDeliver}
-          >
-            Entregue
-          </button>
-        )}
+          <div className="status">Status do pedido: {request.status}</div>
+          <div className="table">Mesa: {request.table}</div>
+          <div className="time">
+            Data: {request.start_date.format('DD/MM/YYYY HH:mm:ss')}
+          </div>
+          <div className="diff_time">
+            {' '}
+            Tempo na cozinha: {request.diff_date.asMinutes().toFixed(0)} Minutos
+          </div>
+
+          <div className="description">
+            <ul>{request.products.map(this.renderProduct)}</ul>
+          </div>
+          <div className="valor">{request.total}</div>
+          {request.status === 'FEITO' && (
+            <button
+              data-key={request.id}
+              className="buttons bg-action-request-menu button-small"
+              onClick={this.changeOrderDeliver}
+            >
+              Entregue
+            </button>
+          )}
         </div>
       </section>
     )
