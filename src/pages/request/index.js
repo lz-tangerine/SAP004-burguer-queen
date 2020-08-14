@@ -31,7 +31,7 @@ export default class Request extends Component {
           breakfast: [],
           lunch: [],
         }
-        
+
         docs.forEach((doc) => {
           const productFirebase = doc.data()
           if (productFirebase.category === 'breackfast') {
@@ -74,7 +74,6 @@ export default class Request extends Component {
         qtd: 1,
       })
     }
-
     total += product.price
 
     this.setState({ request, total })
