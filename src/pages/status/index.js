@@ -1,38 +1,120 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
+import Grid from '@material-ui/core/Grid'
+import { makeStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Button from '@material-ui/core/Button'
+
+import BottomNavigation from '@material-ui/core/BottomNavigation'
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
+import AssignmentIcon from '@material-ui/icons/Assignment'
+import AlarmIcon from '@material-ui/icons/Alarm'
+import Typography from '@material-ui/core/Typography'
+
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+
 import firebase from '../../firebase'
-import moment from 'moment'
 import './style.css'
+import moment from 'moment'
 
-export default class Index extends Component {
-  state = {
-    requests: [
-      // {
-      //   table: '',
-      //   products: [],
-      //   status: 'A FAZER', // PREPARANDO, FEITO, ENTREGUE
-      //   date: '',
-      // },
-    ],
-  }
+const useStyles = makeStyles((theme) => ({
+  headerTopLef: {
+    backgroundImage: 'url(imagens/bgtop.jpeg)',
+    width: '800px',
+    height: '1100px',
+    position: 'absolute',
+    transform: 'rotate(45deg)',
+    top: '-415px',
+    left: '-864px',
+    borderRadius: '15px',
+    zIndex: 5,
+  },
+  headerTopRight: {
+    backgroundImage: 'url(imagens/bgtop.jpeg)',
+    width: '800px',
+    height: '1100px',
+    position: 'absolute',
+    transform: 'rotate(135deg)',
+    top: '-415px',
+    right: '-864px',
+    borderRadius: '15px',
+  },
+  header: {
+    position: 'relative',
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    backgroundColor: '#212121',
+    height: '150px',
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: '#E0E0E0',
+    //fontSize: '1em',
+  },
+  paperResume: {
+    padding: theme.spacing(2),
+    textAlign: 'left',
+    color: '#E0E0E0',
+    //fontSize: '1em',
+  },
+  paper2: {
+    margin: theme.spacing(1),
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: ' #E0E0E0',
+    backgroundColor: '#212121',
+    cursor: 'pointer',
+    //fontSize: '1em',
+  },
+  relative: {
+    position: 'relative',
+  },
+  logo: {
+    height: '100%',
+  },
+  margin: {
+    margin: theme.spacing(1),
+  },
+  padding: {
+    margin: theme.spacing(1),
+  },
+  buttonLogin: {
+    margin: '1em',
+  },
+  content: {
+    height: '100vh',
+  },
+  inputStyle: {
+    width: '90%',
+    margin: theme.spacing(1),
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
+  inline: {
+    display: 'inline',
+  },
+}))
 
-  changeOrderDeliver = (event) => {
-    const requestId = event.target.attributes['data-key'].value
+const Index = function (props) {
+  const classes = useStyles()
+  const [requests, setRequests] = useState([])
 
-    const { requests } = this.state
+  const changeOrderDeliver = async (index) => {
+    const requestId = requests[index].id
 
-    const requestIndex = requests.findIndex((element, index, array) => {
-      return element.id === requestId ? true : false
-    })
-
-    firebase.firestore().collection('request').doc(requestId).update({
+    await firebase.firestore().collection('request').doc(requestId).update({
       status: 'ENTREGUE',
     })
 
-    requests.splice(requestIndex, 1)
-    this.setState({ requests })
+    loadRequests()
   }
 
-  loadRequests = () => {
+  const loadRequests = () => {
     firebase
       .firestore()
       .collection('request')
@@ -63,15 +145,17 @@ export default class Index extends Component {
           }
         })
 
-        this.setState({ requests })
+        setRequests(requests)
       })
   }
 
-  componentDidMount() {
-    this.loadRequests()
-  }
+  useEffect(() => {
+    if (requests.length === 0) {
+      loadRequests()
+    }
+  })
 
-  renderProduct = (product, index) => {
+  const renderProduct = (product, index) => {
     return (
       <li key={index}>
         {product.qtd} {product.name}
@@ -79,7 +163,18 @@ export default class Index extends Component {
     )
   }
 
-  renderRequest = (request, index) => {
+  const [valueNavigation, setValueNavigation] = useState('preparation')
+
+  const handleChangeNavigation = (event, newValue) => {
+    setValueNavigation(newValue)
+    if (newValue !== 'requests') {
+      props.history.push('/status')
+    } else {
+      props.history.push('/request')
+    }
+  }
+
+  const renderRequest = (request, index) => {
     // request.status = 'FEITO'
     const className =
       request.status === 'A FAZER'
@@ -89,50 +184,98 @@ export default class Index extends Component {
         : 'request_card making'
 
     return (
-      <section className={className} key={index}>
-        <div className="request_card_P">
-          <div className="status">Status do pedido: {request.status}</div>
-          <div className="table">Mesa: {request.table}</div>
-          <div className="time">
-            Data: {request.start_date.format('DD/MM/YYYY HH:mm:ss')}
-          </div>
-          <div className="diff_time">
-            {' '}
-            Tempo na cozinha: {request.diff_date.asMinutes().toFixed(0)} Minutos
-          </div>
-
-          <div className="description">
-            <ul>{request.products.map(this.renderProduct)}</ul>
-          </div>
-          <div className="valor">{request.total}</div>
-          {request.status === 'FEITO' && (
-            <button
-              data-key={request.id}
-              className="buttons bg-action-request-menu button-small"
-              onClick={this.changeOrderDeliver}
-            >
-              Entregue
-            </button>
-          )}
-        </div>
-      </section>
+      <Grid item xs={12} md={6}>
+        <Card variant="outlined" className={classes.margin}>
+          <CardContent>
+            <Grid container>
+              <Grid item xs={6}>
+                <Typography variant="h5" component="h2">
+                  Status: {request.status}
+                </Typography>
+                <Typography
+                  className={classes.title}
+                  color="textSecondary"
+                  gutterBottom
+                >
+                  Nome: {request.name} <br />
+                  Mesa: {request.table} <br />
+                  Data: {request.start_date.format('DD/MM/YYYY HH:mm:ss')}
+                  <br />
+                  Tempo na cozinha: {request.diff_date
+                    .asMinutes()
+                    .toFixed(0)}{' '}
+                  Minutos
+                </Typography>
+              </Grid>
+              <Grid item xs={6}>
+                <ul>{request.products.map(renderProduct)}</ul>
+              </Grid>
+            </Grid>
+          </CardContent>
+          <CardActions>
+            {request.status === 'PRONTO' && (
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                onClick={(e) => {
+                  changeOrderDeliver(index)
+                }}
+                className={classes.margin}
+              >
+                Marcar como ENTREGUE
+              </Button>
+            )}
+          </CardActions>
+        </Card>
+      </Grid>
     )
   }
 
-  render() {
-    return (
-      <main>
-        <h1 className="h1">PEDIDOS A PREPARAR</h1>
+  return (
+    <>
+      <Grid item xs={12} className={classes.relative}>
+        <div className={classes.headerTopLef}></div>
+        <Paper className={classes.header}>
+          <img className={classes.logo} alt="complex" src="/imagens/logo.png" />
+        </Paper>
+        <div className={classes.headerTopRight}></div>
+      </Grid>
+      <Grid item xs={12}>
+        <Paper className={classes.paper} elevation={3}>
+          <Grid container alignItems="center" justify="center">
+            <Grid item xs={12} className={classes.margin}>
+              <BottomNavigation
+                value={valueNavigation}
+                onChange={handleChangeNavigation}
+              >
+                <BottomNavigationAction
+                  label="Fazer Pedido"
+                  value="requests"
+                  showLabel
+                  icon={<AssignmentIcon />}
+                />
 
-        {this.state.requests.map(this.renderRequest)}
-
-        {/* <section className="request_card making">
-          <div className="number">4552</div>
-          <div className="table">05</div>
-          <div className="time">08:30</div>
-          <div className="description">1 hamburger e coca</div>
-        </section> */}
-      </main>
-    )
-  }
+                <BottomNavigationAction
+                  label="Verificar Preparação"
+                  value="preparation"
+                  showLabel
+                  icon={<AlarmIcon />}
+                />
+              </BottomNavigation>
+            </Grid>
+          </Grid>
+          <Grid container alignItems="center" justify="center">
+            {requests.length === 0 ? (
+              <h1>Não existe pedidos pendentes</h1>
+            ) : (
+              requests.map(renderRequest)
+            )}
+          </Grid>
+        </Paper>
+      </Grid>
+    </>
+  )
 }
+
+export default Index
