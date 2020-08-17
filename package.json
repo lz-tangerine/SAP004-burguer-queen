@@ -4,6 +4,8 @@
   "private": true,
   "key": "e6e97b92c5c49cb263c168abecad6916b605d2ae",
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
