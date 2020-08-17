@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import logo from '../../imagens/logo.png'
+// import logo from '../../imagens/logo.png'
 import firebase from '../../firebase'
 import moment from 'moment'
 import './style.css'
@@ -121,10 +121,6 @@ export default class Index extends Component {
   render() {
     return (
       <main>
-        <div className="header">
-          <img src={logo} alt=""></img>
-        </div>
-
         <h1 className="h1">PEDIDOS A PREPARAR</h1>
 
         {this.state.requests.map(this.renderRequest)}

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import logo from '../../imagens/logo.png'
 import firebase from '../../firebase'
 import './style.css'
 
@@ -168,9 +167,6 @@ export default class Request extends Component {
   render() {
     return (
       <main>
-        <div className="header">
-          <img src={logo} alt="logo" className="logo"></img>
-        </div>
         <nav className="nav">
           <button className="buttons bg-action-request-menu button-big">
             PEDIDOS

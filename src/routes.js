@@ -1,7 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Main from './pages/main'
-import Login from './pages/login'
 import Register from './pages/register'
 import Kitchen from './pages/kitchen'
 import Request from './pages/request'
@@ -27,7 +26,6 @@ const Routes = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Main} />
-        <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <PrivateRoute path="/kitchen" component={Kitchen} />
         <PrivateRoute path="/request" component={Request} />
