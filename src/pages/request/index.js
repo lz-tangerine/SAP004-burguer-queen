@@ -138,7 +138,8 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   inputStyle: {
-    width: '80%',
+    width: '90%',
+    margin: theme.spacing(1),
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -409,7 +410,7 @@ const Index = function (props) {
                   </Tabs>
                 </AppBar>
                 <TabPanel value={valueTab} index={0}>
-                  <Grid item xs={6}>
+                  <Grid item xs={12} md={6}>
                     <TextField
                       mane="name"
                       label="Nome"
@@ -421,7 +422,7 @@ const Index = function (props) {
                       value={name}
                     />
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item xs={12} md={6}>
                     <TextField
                       mane="table"
                       label="Mesa"
@@ -438,7 +439,7 @@ const Index = function (props) {
                   </Grid>
                 </TabPanel>
                 <TabPanel value={valueTab} index={1}>
-                  <Grid item xs={6}>
+                  <Grid item xs={12} md={6}>
                     <TextField
                       mane="name"
                       label="Nome"
@@ -450,7 +451,7 @@ const Index = function (props) {
                       value={name}
                     />
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item xs={12} md={6}>
                     <TextField
                       mane="table"
                       label="Mesa"
