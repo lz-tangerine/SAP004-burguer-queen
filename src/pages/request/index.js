@@ -1,26 +1,204 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
+import Grid from '@material-ui/core/Grid'
+import { makeStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Button from '@material-ui/core/Button'
+
+// import Input from '@material-ui/core/Input'
+// import InputLabel from '@material-ui/core/InputLabel'
+import TextField from '@material-ui/core/TextField'
+
+import BottomNavigation from '@material-ui/core/BottomNavigation'
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
+import AssignmentIcon from '@material-ui/icons/Assignment'
+import AlarmIcon from '@material-ui/icons/Alarm'
+import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast'
+
+import PropTypes from 'prop-types'
+import AppBar from '@material-ui/core/AppBar'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import RestaurantIcon from '@material-ui/icons/Restaurant'
+// import ShoppingBasket from '@material-ui/icons/ShoppingBasket'
+// import ThumbDown from '@material-ui/icons/ThumbDown'
+// import ThumbUp from '@material-ui/icons/ThumbUp'
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
+
+// import List from '@material-ui/core/List'
+// import ListItem from '@material-ui/core/ListItem'
+// import Divider from '@material-ui/core/Divider'
+// import ListItemText from '@material-ui/core/ListItemText'
+// import ListItemAvatar from '@material-ui/core/ListItemAvatar'
+// import Avatar from '@material-ui/core/Avatar'
+
 import firebase from '../../firebase'
 import './style.css'
 
-export default class Request extends Component {
-  state = {
-    products: {
-      breakfast: [],
-      lunch: [],
-      order: [],
-    },
-    request: {
-      table: '',
+function TabPanel(props) {
+  const { children, value, index, ...other } = props
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`scrollable-force-tabpanel-${index}`}
+      aria-labelledby={`scrollable-force-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Grid container>{children}</Grid>
+        </Box>
+      )}
+    </div>
+  )
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+}
+
+function a11yProps(index) {
+  return {
+    id: `scrollable-force-tab-${index}`,
+    'aria-controls': `scrollable-force-tabpanel-${index}`,
+  }
+}
+
+const useStyles = makeStyles((theme) => ({
+  headerTopLef: {
+    backgroundImage: 'url(imagens/bgtop.jpeg)',
+    width: '800px',
+    height: '1100px',
+    position: 'absolute',
+    transform: 'rotate(45deg)',
+    top: '-415px',
+    left: '-864px',
+    borderRadius: '15px',
+    zIndex: 5,
+  },
+  headerTopRight: {
+    backgroundImage: 'url(imagens/bgtop.jpeg)',
+    width: '800px',
+    height: '1100px',
+    position: 'absolute',
+    transform: 'rotate(135deg)',
+    top: '-415px',
+    right: '-864px',
+    borderRadius: '15px',
+  },
+  header: {
+    position: 'relative',
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    backgroundColor: '#212121',
+    height: '150px',
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: '#E0E0E0',
+    //fontSize: '1em',
+  },
+  paperResume: {
+    padding: theme.spacing(2),
+    textAlign: 'left',
+    color: '#E0E0E0',
+    //fontSize: '1em',
+  },
+  paper2: {
+    margin: theme.spacing(1),
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: ' #E0E0E0',
+    backgroundColor: '#212121',
+    cursor: 'pointer',
+    //fontSize: '1em',
+  },
+  relative: {
+    position: 'relative',
+  },
+  logo: {
+    height: '100%',
+  },
+  margin: {
+    margin: theme.spacing(1),
+  },
+  padding: {
+    margin: theme.spacing(1),
+  },
+  buttonLogin: {
+    margin: '1em',
+  },
+  content: {
+    height: '100vh',
+  },
+  inputStyle: {
+    width: '80%',
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
+  inline: {
+    display: 'inline',
+  },
+}))
+
+const Index = function (props) {
+  const classes = useStyles()
+  const [products, setProducts] = useState({
+    breakfast: [],
+    lunch: [],
+  })
+
+  const [request, setRequest] = useState({
+    products: [],
+    status: 'A FAZER', // PREPARANDO, FEITO, ENTREGUE
+    date: '',
+  })
+  const [table, setTable] = useState('')
+  const [name, setName] = useState('')
+
+  const [total, setTotal] = useState(0)
+
+  const [categorySelected, setCategorySelected] = useState('breakfast')
+
+  const [valueNavigation, setValueNavigation] = useState('requests')
+
+  const [error, setError] = useState('')
+
+  const handleChangeNavigation = (event, newValue) => {
+    setValueNavigation(newValue)
+    if (newValue !== 'requests') {
+      props.history.push('/status')
+    } else {
+      props.history.push('/request')
+    }
+  }
+
+  const [valueTab, setValueTab] = React.useState(0)
+
+  const handleChangeTab = (event, newValue) => {
+    changeMenuRequest(newValue === 0 ? 'breakfast' : 'lunch')
+    setValueTab(newValue)
+  }
+
+  const resetRequest = () => {
+    setRequest({
       products: [],
       status: 'A FAZER', // PREPARANDO, FEITO, ENTREGUE
       date: '',
-    },
-    total: 0,
-    categorySelected: 'breakfast',
-    error: '',
+    })
+    setName('')
+    setTable('')
   }
 
-  loadProducts = () => {
+  const loadProducts = () => {
     firebase
       .firestore()
       .collection('menu')
@@ -46,18 +224,19 @@ export default class Request extends Component {
           }
         })
 
-        this.setState({ products: products })
+        setProducts(products)
       })
   }
 
-  componentDidMount() {
-    this.loadProducts()
-  }
+  useEffect(() => {
+    if (products.breakfast.length === 0) {
+      loadProducts()
+    }
+  })
 
-  selectProduct = (index) => {
-    let total = this.state.total
-    const { request } = this.state
-    const product = this.state.products[this.state.categorySelected][index]
+  const selectProduct = (index) => {
+    let totalPrice = 0
+    const product = products[categorySelected][index]
 
     const productIndex = request.products.findIndex((element) => {
       return element.name === product.name ? true : false
@@ -73,23 +252,29 @@ export default class Request extends Component {
       })
     }
 
-    total += product.price
+    totalPrice = total + product.price
 
-    this.setState({ request, total })
+    setRequest(request)
+    setTotal(totalPrice)
+    setError('')
   }
 
-  renderProduct = (product, index) => {
+  const renderProduct = (product, index) => {
     return (
-      <li onClick={() => this.selectProduct(index)}>
-        <span>{product.name}</span>
-        <span>R$ {product.price.toFixed(2)}</span>
-      </li>
+      <>
+        <Grid item xs={12} md={6} onClick={() => selectProduct(index)}>
+          <Paper className={classes.paper2} elevation={3}>
+            {product.name}
+            <br />
+            R$ {product.price.toFixed(2)}
+          </Paper>
+        </Grid>
+      </>
     )
+    // <Divider variant="fullWidth" component="li" />
   }
 
-  removeProductRequest = (index) => {
-    const { request } = this.state
-
+  const removeProductRequest = (index) => {
     request.products[index].qtd--
     if (request.products[index].qtd === 0) {
       request.products.splice(index, 1)
@@ -100,10 +285,12 @@ export default class Request extends Component {
       total += currentValue.price * currentValue.qtd
     })
 
-    this.setState({ request, total })
+    setRequest(request)
+    setTotal(total)
+    setError('')
   }
 
-  renderRequest = (product, index) => {
+  const renderRequest = (product, index) => {
     return (
       <li>
         <span>
@@ -112,120 +299,225 @@ export default class Request extends Component {
 
         <span>R$ {product.price.toFixed(2)}</span>
 
-        <section
-          onClick={() => this.removeProductRequest(index)}
-          data-item={JSON.stringify(product)}
-        >
-          Remover
-        </section>
+        <section onClick={() => removeProductRequest(index)}>Remover</section>
       </li>
     )
   }
 
-  changeMenuRequest = (event) => {
-    this.setState({
-      categorySelected: event.target.innerText.toLowerCase(),
-    })
+  const changeMenuRequest = (value) => {
+    setCategorySelected(value.toLowerCase())
+    setError('')
   }
 
-  changeTable = (event) => {
-    const { request } = this.state
-    request.table = event.target.value
-    this.setState({
-      request,
-    })
+  const changeTable = (event) => {
+    setTable(event.target.value)
+    setError('')
   }
 
-  requestFinished = async () => {
-    const { request } = this.state
+  const changeName = (event) => {
+    setName(event.target.value)
+    setError('')
+  }
+
+  const requestFinished = async () => {
     let error = ''
 
-    if (!request.table) {
+    if (!name) {
+      error = 'Informe o nome do cliente'
+    } else if (!table) {
       error = 'Informe o numero da mesa'
     } else if (request.products.length === 0) {
       error = 'Selecione um produto para montar o pedido'
     }
 
     if (error) {
-      this.setState({ error })
+      setError(error)
       return false
     } else {
-      this.setState({ error })
+      setError(error)
     }
 
     request.start_date = new Date()
     request.end_date = null
+    request.table = table
+    request.total = total
+    request.name = name
 
     const result = await firebase.firestore().collection('request').add(request)
     if (result.id) {
-      this.props.history.push('/status')
+      props.history.push('/status')
     } else {
-      this.setState({ error: 'Nao foi possivel registrar o pedido' })
+      setError('Nao foi possivel registrar o pedido')
     }
   }
 
-  render() {
-    return (
-      <main>
-        <nav className="nav">
-          <button className="buttons bg-action-request-menu button-big">
-            PEDIDOS
-          </button>
-          <button className="buttons bg-action-request-menu button-big">
-            PREPARAÇÃO
-          </button>
-        </nav>
+  return (
+    <>
+      <Grid item xs={12} className={classes.relative}>
+        <div className={classes.headerTopLef}></div>
+        <Paper className={classes.header}>
+          <img className={classes.logo} alt="complex" src="/imagens/logo.png" />
+        </Paper>
+        <div className={classes.headerTopRight}></div>
+      </Grid>
+      <Grid item xs={12}>
+        <Paper className={classes.paper} elevation={3}>
+          <Grid container alignItems="center" justify="center">
+            <Grid item xs={12} className={classes.margin}>
+              <BottomNavigation
+                value={valueNavigation}
+                onChange={handleChangeNavigation}
+              >
+                <BottomNavigationAction
+                  label="Fazer Pedido"
+                  value="requests"
+                  showLabel
+                  icon={<AssignmentIcon />}
+                />
 
-        <div className="menu_request">
-          <div className="menu_request_button">
-            <button
-              className="buttons bg-action-request-menu button-small"
-              onClick={this.changeMenuRequest}
-            >
-              Breakfast
-            </button>
-            <button
-              className="buttons bg-action-request-menu button-small"
-              onClick={this.changeMenuRequest}
-            >
-              Lunch
-            </button>
-          </div>
+                <BottomNavigationAction
+                  label="Verificar Preparação"
+                  value="preparation"
+                  showLabel
+                  icon={<AlarmIcon />}
+                />
+              </BottomNavigation>
+            </Grid>
 
-          <input
-            name="table"
-            className="table input input-small"
-            placeholder="Digite numero da mesa"
-            onChange={this.changeTable}
-            value={this.state.request.table}
-          />
+            <Grid container alignItems="baseline" justify="center">
+              <Grid item xs={6}>
+                <AppBar position="static" color="default">
+                  <Tabs
+                    value={valueTab}
+                    onChange={handleChangeTab}
+                    variant="scrollable"
+                    scrollButtons="on"
+                    indicatorColor="primary"
+                    textColor="primary"
+                    aria-label="scrollable force tabs example"
+                  >
+                    <Tab
+                      label="Café da Manhâ"
+                      icon={<FreeBreakfastIcon />}
+                      {...a11yProps(0)}
+                    />
+                    <Tab
+                      label="Almoço / Jantar"
+                      icon={<RestaurantIcon />}
+                      {...a11yProps(1)}
+                    />
+                  </Tabs>
+                </AppBar>
+                <TabPanel value={valueTab} index={0}>
+                  <Grid item xs={6}>
+                    <TextField
+                      mane="name"
+                      label="Nome"
+                      required
+                      className={classes.inputStyle}
+                      placeholder="Digite nome do cliente"
+                      onChange={changeName}
+                      variant="outlined"
+                      value={name}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextField
+                      mane="table"
+                      label="Mesa"
+                      required
+                      className={classes.inputStyle}
+                      placeholder="Digite numero da mesa"
+                      onChange={changeTable}
+                      variant="outlined"
+                      value={table}
+                    />
+                  </Grid>
+                  <Grid container alignItems="center" justify="center">
+                    {products['breakfast'].map(renderProduct)}
+                  </Grid>
+                </TabPanel>
+                <TabPanel value={valueTab} index={1}>
+                  <Grid item xs={6}>
+                    <TextField
+                      mane="name"
+                      label="Nome"
+                      required
+                      className={classes.inputStyle}
+                      placeholder="Digite nome do cliente"
+                      onChange={changeName}
+                      variant="outlined"
+                      value={name}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextField
+                      mane="table"
+                      label="Mesa"
+                      required
+                      className={classes.inputStyle}
+                      placeholder="Digite numero da mesa"
+                      onChange={changeTable}
+                      variant="outlined"
+                      value={table}
+                    />
+                  </Grid>
+                  <Grid container alignItems="center" justify="center">
+                    {products['lunch'].map(renderProduct)}
+                  </Grid>
+                </TabPanel>
+              </Grid>
+              <Grid item xs={6}>
+                <Grid container>
+                  <Grid item xs={12}>
+                    <Paper className={classes.paperResume}>
+                      <Typography variant="h5" gutterBottom>
+                        Resumo do Pedido
+                      </Typography>
+                      <Typography variant="h6" gutterBottom>
+                        {name && <span> Nome: {name}</span>}{' '}
+                      </Typography>
+                      <Typography variant="h6" gutterBottom>
+                        {table && <span> Mesa: {table}</span>}{' '}
+                      </Typography>
 
-          <ul className="ul_products" key="products">
-            {this.state.products[this.state.categorySelected].map(
-              this.renderProduct,
-            )}
-          </ul>
-        </div>
+                      <ul className="ul_request" key="request">
+                        {request.products.map(renderRequest)}
+                      </ul>
 
-        <div className="resumo">
-          <label>Resumo</label>
-          <div>Mesa: {this.state.request.table}</div>
-          <ul className="ul_request" key="request">
-            {this.state.request.products.map(this.renderRequest)}
-          </ul>
-          <div className="total">Total: R$ {this.state.total.toFixed(2)}</div>
+                      <div className="total">Total: R$ {total.toFixed(2)}</div>
+                    </Paper>
 
-          {this.state.error && <p>{this.state.error}</p>}
-
-          <button
-            className="buttons bg-action button-small"
-            onClick={this.requestFinished}
-          >
-            Finalizar
-          </button>
-          <button className="buttons bg-primary button-small">Cancelar</button>
-        </div>
-      </main>
-    )
-  }
+                    {error && <p>{error}</p>}
+                  </Grid>
+                  <Grid item xs={12} className={classes.margin}>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      size="large"
+                      className={classes.margin}
+                      onClick={resetRequest}
+                    >
+                      Cancelar
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      size="large"
+                      onClick={requestFinished}
+                      className={classes.margin}
+                    >
+                      Registrar
+                    </Button>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Paper>
+      </Grid>
+    </>
+  )
 }
+
+export default Index
